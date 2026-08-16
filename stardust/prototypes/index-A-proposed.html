@@ -51,21 +51,20 @@ code,pre{font-family:var(--font-mono)}
 header[data-section="header"]{
   grid-column:1/-1;position:sticky;top:0;z-index:20;background:var(--paper);
   border-bottom:1px solid var(--ink);
-  display:flex;align-items:center;justify-content:space-between;padding:14px 32px}
-.nav-github{display:inline-flex;align-items:center;gap:6px}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-heading);font-weight:700;font-size:1rem}
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:14px 32px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-heading);font-weight:700;font-size:1rem;
+  justify-self:start}
 .brand img{width:28px;height:28px}
-.nav-links{display:flex;gap:28px;font-size:.9rem;font-weight:500}
-.nav-links a{text-decoration:none}
-.nav-links a:hover{text-decoration:underline;text-decoration-color:var(--yellow);text-underline-offset:4px}
+.nav-links{display:flex;gap:28px;font-size:.9rem;font-weight:500;justify-self:center}
+.nav-links a{text-decoration:none;padding:4px 8px;margin:-4px -8px;border:1px solid transparent}
+.nav-links a:hover{border-color:var(--ink)}
 .btn{font-family:var(--font-heading);font-weight:600;font-size:.85rem;padding:10px 22px;
   border-radius:var(--radius);border:var(--border-w) solid var(--ink);text-decoration:none;
-  display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:transform .15s ease, opacity .15s ease}
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:background-color .15s ease, color .15s ease}
 .btn-primary{background:var(--ink);color:var(--paper)}
-.btn-primary:hover{transform:translateY(-2px)}
 .btn-secondary{background:transparent;color:var(--ink)}
 .btn-secondary:hover{background:var(--ink);color:var(--paper)}
-.header-actions{display:flex;gap:14px;align-items:center}
+.header-actions{display:flex;gap:14px;align-items:center;justify-self:end}
 @media (max-width:640px){.nav-links{display:none}}
 
 nav[data-section="rail"]{
@@ -140,10 +139,12 @@ section[data-section="hero"]{padding-top:80px;padding-bottom:80px;display:grid;
   position:absolute;left:0}
 .ai-card li .lead{color:#fff}
 
-.diagram{display:flex;align-items:center;gap:16px;margin:28px 0;flex-wrap:wrap}
-.diagram-box{border:var(--border-w) solid var(--ink);padding:18px 22px;font-family:var(--font-heading);
-  font-size:.82rem;font-weight:600;text-align:center;background:var(--paper)}
-.diagram-arrow{font-family:var(--font-heading);color:var(--gray)}
+.diagram{display:flex;align-items:stretch;gap:16px;margin:28px 0;flex-wrap:wrap}
+.diagram-box{flex:1;min-width:140px;border:var(--border-w) solid var(--ink);padding:18px 22px;
+  font-family:var(--font-heading);font-size:.82rem;font-weight:600;text-align:center;background:var(--paper);
+  display:flex;flex-direction:column;align-items:center;justify-content:center}
+.diagram-illustration{width:100%;height:64px;background:var(--tint);margin-bottom:14px}
+.diagram-arrow{font-family:var(--font-heading);color:var(--gray);display:flex;align-items:center}
 
 .card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
 @media (max-width:900px){.card-grid-3{grid-template-columns:1fr}}
@@ -216,6 +217,10 @@ footer[data-section="footer"]{grid-column:1/-1;background:var(--ink);color:var(-
   text-transform:uppercase;letter-spacing:.06em}
 .footer-col a{display:block;color:var(--paper);text-decoration:none;font-size:.88rem;margin-bottom:10px;opacity:.9}
 .footer-col a:hover{opacity:1;text-decoration:underline}
+.yc-badge{display:flex;align-items:center;gap:8px;margin-top:24px;font-size:.78rem;color:#9a9a9a}
+.yc-mark{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex-shrink:0;
+  background:#ff6600;color:#fff;font-family:var(--font-heading);font-weight:700;font-size:.7rem}
+.yc-text{color:#9a9a9a;font-weight:600}
 .footer-bottom{max-width:var(--max-width);margin:40px auto 0;padding-top:24px;border-top:1px solid #333;
   font-size:.78rem;color:#9a9a9a}
 @media (min-width:1024px){
@@ -234,10 +239,10 @@ footer[data-section="footer"]{grid-column:1/-1;background:var(--ink);color:var(-
   <nav class="nav-links">
     <a href="/docs">Docs</a>
     <a href="/blog">Blog</a>
-    <a href="https://github.com/wasp-lang/wasp" class="nav-github"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>18k+</span></a>
     <a href="https://discord.gg/rzdnErX">Discord</a>
   </nav>
   <div class="header-actions">
+    <a href="https://github.com/wasp-lang/wasp" class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>18k</span><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--yellow)" stroke="var(--ink)" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l2.9 6.26L22 9.77l-5 4.87 1.18 6.86L12 18.27l-6.18 3.23L7 14.64 2 9.77l7.1-1.01L12 2.5z"/></svg></a>
     <a href="/docs/quick-start" class="btn btn-primary">&gt;_ Get started</a>
   </div>
 </header>
@@ -366,11 +371,11 @@ footer[data-section="footer"]{grid-column:1/-1;background:var(--ink);color:var(-
   <h2>How It Works</h2>
   <p class="lede">You write your app as high-level config in *.wasp.ts files, alongside the usual React, Node, and Prisma code. Wasp compiles it into a full-stack app, ready to deploy anywhere.</p>
   <div class="diagram">
-    <div class="diagram-box">YOUR CODE<br><span style="font-weight:400;color:var(--gray);font-size:.75rem">*.wasp.ts</span></div>
+    <div class="diagram-box"><div class="diagram-illustration"></div>YOUR CODE<br><span style="font-weight:400;color:var(--gray);font-size:.75rem">*.wasp.ts</span></div>
     <span class="diagram-arrow">→</span>
-    <div class="diagram-box">IR</div>
+    <div class="diagram-box"><div class="diagram-illustration"></div>IR</div>
     <span class="diagram-arrow">→</span>
-    <div class="diagram-box">GENERATED CODE</div>
+    <div class="diagram-box"><div class="diagram-illustration"></div>GENERATED CODE</div>
   </div>
   <p style="font-size:16px;color:var(--gray)">* Treat the generated code like any compiler output. You can look at it, but there is no need to.</p>
 </section>
@@ -516,6 +521,7 @@ footer[data-section="footer"]{grid-column:1/-1;background:var(--ink);color:var(-
         <input type="email" placeholder="you@example.com" aria-label="Email" style="flex:1;background:transparent;border:none;color:var(--paper);padding:8px 10px;font-size:.82rem">
         <button type="submit" style="background:var(--yellow);color:var(--ink);border:none;padding:8px 14px;font-family:var(--font-heading);font-weight:600;font-size:.78rem;cursor:pointer">Subscribe</button>
       </form>
+      <div class="yc-badge">Backed by <span class="yc-mark" aria-hidden="true">Y</span><span class="yc-text">Combinator</span></div>
     </div>
   </div>
   <div class="footer-bottom">© Wasp — <a href="/privacy-policy" class="link">learn more about our cookie policy</a></div>
