@@ -1,0 +1,334 @@
+<title>Wasp · Current-state brand review</title>
+<style>
+  :root{
+    --primary:#d4a930; --primary-dark:#947622; --accent:#5a30d4; --secondary:#7b42f5;
+    --text:#111111; --text-muted:#777777; --surface:#ffffff; --surface-alt:#f7f5f0;
+    --border:#dadde1; --display:"JetBrains Mono","IBM Plex Mono",monospace; --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--surface-alt);color:var(--text);font-family:var(--body);line-height:1.6}
+  h1,h2,h3,h4,.display{font-family:var(--display)}
+  a{color:var(--accent)}
+  section{max-width:1100px;margin:0 auto;padding:48px 24px;scroll-margin-top:64px}
+  section+section{border-top:1px solid var(--border)}
+  h2{font-size:1.4rem;margin:0 0 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .badge{font-family:var(--display);font-size:.65rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+    padding:3px 8px;border-radius:3px;background:var(--surface);border:1px solid var(--border);color:var(--text-muted)}
+  nav.top{position:sticky;top:0;z-index:10;background:var(--primary-dark);color:#fff;padding:10px 24px;
+    display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-family:var(--display);
+    text-transform:uppercase;letter-spacing:1.5px;font-size:12px}
+  nav.top strong{margin-right:16px;letter-spacing:normal;font-size:13px}
+  nav.top a{color:#fff;text-decoration:none;padding:6px 12px;border-radius:150px;opacity:.85}
+  nav.top a:hover{background:rgba(255,255,255,.18);opacity:1}
+  .masthead{text-align:center;padding:64px 24px}
+  .masthead img{width:64px;height:64px;margin-bottom:16px}
+  .masthead .hero-line{font-size:1.6rem;color:var(--accent);font-family:var(--display);font-weight:600;max-width:640px;margin:0 auto 12px}
+  .masthead .tagline{color:var(--text-muted)}
+  .masthead .origin{font-family:var(--display);font-size:.8rem;color:var(--text-muted);margin-top:8px}
+  .stat-row{display:flex;gap:16px;flex-wrap:wrap}
+  .stat{flex:1;min-width:220px;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:16px}
+  .stat .n{font-family:var(--display);font-size:1.3rem;font-weight:600}
+  .stat .l{color:var(--text-muted);font-size:.85rem}
+  .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+  .thumb{border:1px solid var(--border);border-radius:3px;overflow:hidden;background:var(--surface)}
+  .thumb img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover;object-position:top}
+  .thumb .cap{padding:8px 10px;font-size:.8rem}
+  .thumb .cap .path{font-family:var(--display);color:var(--text-muted);font-size:.7rem}
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+  .swatch{border:1px solid var(--border);border-radius:3px;overflow:hidden;background:var(--surface)}
+  .swatch .chip{height:96px}
+  .swatch .meta{padding:10px 12px}
+  .swatch .role{font-family:var(--display);text-transform:uppercase;font-size:.7rem;font-weight:600;letter-spacing:.05em}
+  .swatch .hex{font-family:var(--display);font-size:.8rem;color:var(--text-muted)}
+  .swatch .ctx{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+  .pill{font-size:.65rem;background:var(--surface-alt);border:1px solid var(--border);border-radius:150px;padding:2px 8px}
+  .type-row{border:1px solid var(--border);border-radius:3px;background:var(--surface);padding:16px 20px;margin-bottom:12px}
+  .type-row .label{font-family:var(--display);font-size:.75rem;color:var(--text-muted);margin-bottom:8px}
+  .voice-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px}
+  .voice-card{background:var(--surface-alt);border-radius:3px;padding:20px}
+  .voice-card .k{font-family:var(--display);font-size:.7rem;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+  .cta-list{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 24px}
+  .tensions{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+  .tension{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--accent);
+    border-radius:3px;padding:16px 18px}
+  .tension h4{margin:8px 0 8px;font-size:1rem}
+  .tension p{margin:0 0 10px;font-size:.9rem}
+  .tension .src{font-size:.7rem;color:var(--text-muted);font-family:var(--display)}
+  .motif-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
+  .motif-card{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:16px;text-align:center}
+  .motif-box{width:60px;height:60px;background:var(--primary);margin:0 auto 10px}
+  .comp-list{list-style:none;margin:0;padding:0}
+  .comp-list li{border-left:3px solid var(--primary);background:var(--surface);border-radius:0 3px 3px 0;
+    padding:12px 16px;margin-bottom:10px}
+  .comp-list .n{font-weight:600}
+  .comp-list .p{color:var(--text-muted);font-size:.85rem}
+  .logo-row{display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+  .logo-row img{width:120px;height:120px;background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:12px}
+  dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px}
+  dt{font-family:var(--display);font-size:.75rem;color:var(--text-muted)}
+  dd{margin:0}
+  .bars{display:flex;align-items:flex-end;gap:12px;height:80px;margin-bottom:16px}
+  .bar{width:24px;background:var(--primary)}
+  .radii-row{display:flex;gap:10px;flex-wrap:wrap}
+  .radii-row .pill{background:var(--surface);padding:6px 14px}
+  footer.review-footer{max-width:1100px;margin:0 auto;padding:48px 24px 80px;color:var(--text-muted);font-size:.85rem}
+  footer.review-footer .legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  @media print{ nav.top{position:static} }
+</style>
+
+<nav class="top">
+  <strong>WASP · CURRENT STATE</strong>
+  <a href="#coverage">Coverage</a>
+  <a href="#pages">Pages</a>
+  <a href="#palette">Palette</a>
+  <a href="#type">Type</a>
+  <a href="#voice">Voice</a>
+  <a href="#tensions">Tensions</a>
+  <a href="#motifs">Motifs</a>
+  <a href="#components">Components</a>
+  <a href="#logo">Logo</a>
+  <a href="#spacing">Spacing</a>
+</nav>
+
+<div class="masthead">
+  <img src="assets/media/wasp-logo.svg" alt="Wasp logo">
+  <p class="hero-line">A truly full-stack TypeScript framework that just works.</p>
+  <p class="tagline">Develop full-stack web apps without boilerplate.</p>
+  <p class="origin">https://wasp.sh</p>
+</div>
+
+<section id="coverage">
+  <h2>Coverage <span class="badge">current-state</span></h2>
+  <div class="stat-row">
+    <div class="stat"><div class="n">1 / 1</div><div class="l">pages extracted (homepage-only scope)</div></div>
+    <div class="stat"><div class="n">medium · 2500ms</div><div class="l">wait strategy · avg wait</div></div>
+    <div class="stat"><div class="n">brand: register</div><div class="l">register = "brand" (landing page, no auth wall, signup CTA above fold)</div></div>
+  </div>
+  <p style="margin-top:16px;color:var(--text-muted);font-size:.85rem">
+    Single-page scope by pipeline design (see Pipeline.md) — every cross-page aggregation field
+    (system components, cross-promo, CTA/heading frequency tables) is emitted empty per the
+    extraction skill's own &lt;3-page threshold rule, not a capture failure.
+  </p>
+  <p style="margin-top:8px;color:var(--text-muted);font-size:.85rem">
+    Benchmarked against Wasp's own <a href="https://wasp.sh/blog/2026/07/13/why-design-matters-for-a-web-framework">design blog post</a>
+    (2026-07-13) — declared values corrected/added where the live capture diverged; see Tensions.
+  </p>
+</section>
+
+<section id="pages">
+  <h2>Pages <span class="badge">1 captured</span></h2>
+  <div class="thumbs">
+    <div class="thumb">
+      <img src="assets/screenshots/index.png" alt="Wasp homepage screenshot">
+      <div class="cap">Wasp <div class="path">/ (index)</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="palette">
+  <h2>Color palette <span class="badge">home-only</span></h2>
+  <div class="swatches">
+    <div class="swatch"><div class="chip" style="background:#f7f5f0"></div><div class="meta">
+      <div class="role">Blueprint Paper</div><div class="hex">#f7f5f0</div>
+      <div class="ctx"><span class="pill">background</span><span class="pill">declared ✓ matches</span></div></div></div>
+    <div class="swatch"><div class="chip" style="background:#111111"></div><div class="meta">
+      <div class="role">Ink Black (declared)</div><div class="hex">#111111</div>
+      <div class="ctx"><span class="pill">text</span><span class="pill">blog</span></div></div></div>
+    <div class="swatch"><div class="chip" style="background:#1c1e21"></div><div class="meta">
+      <div class="role">Ink (observed live)</div><div class="hex">#1c1e21</div>
+      <div class="ctx"><span class="pill">text</span><span class="pill">drift from declared</span></div></div></div>
+    <div class="swatch"><div class="chip" style="background:#f5c842"></div><div class="meta">
+      <div class="role">Wasp Yellow</div><div class="hex">#f5c842</div>
+      <div class="ctx"><span class="pill">background</span><span class="pill">border</span><span class="pill">text</span><span class="pill">declared ✓ matches</span></div></div></div>
+    <div class="swatch"><div class="chip" style="background:#777777"></div><div class="meta">
+      <div class="role">Gray (declared)</div><div class="hex">#777777</div>
+      <div class="ctx"><span class="pill">blog</span><span class="pill">borders render #dadde1 instead</span></div></div></div>
+    <div class="swatch"><div class="chip" style="background:#fff3cc"></div><div class="meta">
+      <div class="role">Tint</div><div class="hex">#fff3cc</div>
+      <div class="ctx"><span class="pill">background</span></div></div></div>
+    <div class="swatch"><div class="chip" style="background:#7b42f5"></div><div class="meta">
+      <div class="role">Signal Violet (undeclared)</div><div class="hex">#7b42f5</div>
+      <div class="ctx"><span class="pill">background</span><span class="pill">text</span><span class="pill">not in 3-color system</span></div></div></div>
+    <div class="swatch"><div class="chip" style="background:#292435"></div><div class="meta">
+      <div class="role">Deep Surface (undeclared)</div><div class="hex">#292435</div>
+      <div class="ctx"><span class="pill">background</span><span class="pill">not in 3-color system</span></div></div></div>
+  </div>
+  <p style="margin-top:16px;color:var(--text-muted);font-size:.85rem">
+    Source: _brand-extraction.json § palette, benchmarked 2026-08-16 against
+    <a href="https://wasp.sh/blog/2026/07/13/why-design-matters-for-a-web-framework">Wasp's design blog post</a>,
+    which states the system is "three colors, and that's it": Wasp Yellow, Ink Black, Blueprint
+    Paper. Occurrence counts are null — the bundled single-page crawl captures CSS custom
+    properties, not a per-element frequency walk, so these are role/usage judgments, not weighted
+    counts.
+  </p>
+</section>
+
+<section id="type">
+  <h2>Typography <span class="badge">ad-hoc scale</span></h2>
+  <div class="type-row">
+    <div class="label">HEADING · declared JetBrains Mono / observed IBM Plex Mono, weight 600</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:2rem">The Way of the Wasp</div>
+  </div>
+  <div class="type-row">
+    <div class="label">BODY · IBM Plex Sans 400 / line-height 1.65</div>
+    <div style="font-family:var(--body);font-size:1rem">
+      React, Node.js, and Prisma — wired together with auth, jobs, and deployment built in.
+      Ship in a day and own every line. Designed for humans, works beautifully with AI.
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="label">CODE · system mono stack</div>
+    <div style="font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.85rem">
+      route("RootRoute", "/", page(MainPage, {"{ authRequired: true }"}))
+    </div>
+  </div>
+  <p style="color:var(--text-muted);font-size:.85rem">
+    Theme heading sizes (h1/h2 2rem, h3 1.3rem, h4 1rem, h5 .875rem, h6 .85rem) come from
+    Docusaurus custom properties; the rendered hero H1 in the screenshot is visibly far larger,
+    meaning page-specific CSS overrides the theme default in a way this pass couldn't capture
+    as a token. Scale ratio left unset rather than computed from a token set known not to match
+    what's on screen — see Tensions, T-scale.
+  </p>
+</section>
+
+<section id="voice">
+  <h2>Voice <span class="badge">home-only</span> <span class="badge">tone: inferred</span></h2>
+  <div class="voice-cards">
+    <div class="voice-card"><div class="k">Hero headline</div>A truly full-stack TypeScript framework that just works.</div>
+    <div class="voice-card"><div class="k">Tagline</div>Develop full-stack web apps without boilerplate.</div>
+    <div class="voice-card"><div class="k">First paragraph</div>React, Node.js, and Prisma — wired together with auth, jobs, and deployment built in. Ship in a day and own every line.</div>
+  </div>
+  <div class="cta-list">
+    <span class="pill">Get Started</span><span class="pill">See Documentation</span>
+    <span class="pill">Docs</span><span class="pill">GitHub</span><span class="pill">Discord</span>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="n">36</div><div class="l">distinct headings (single page)</div></div>
+    <div class="stat"><div class="n">0%</div><div class="l">headings uppercase</div></div>
+    <div class="stat"><div class="n">technical-precise</div><div class="l">tone guess — terse, developer-addressed, code-as-proof</div></div>
+  </div>
+</section>
+
+<section id="tensions">
+  <h2>Tensions <span class="badge">decision agenda for direct</span></h2>
+  <div class="tensions">
+    <div class="tension">
+      <span class="badge">T-scale · synthesized</span>
+      <h4>Type scale is ad-hoc</h4>
+      <p>2rem → 2rem → 1.3rem → 1.3rem/1rem → .875rem → .85rem, no consistent ratio (and the
+      theme scale likely understates the real hero size — see Typography). Direct will need to
+      decide whether the target adopts a modular scale.</p>
+      <div class="src">Source: _brand-extraction.json § type.scaleAudit</div>
+    </div>
+    <div class="tension">
+      <span class="badge">T-logo-variants · observed</span>
+      <h4>Only one logo variant captured</h4>
+      <p>Single SVG variant (gold-on-dark mark) captured via the &lt;img&gt; locator. The redesign
+      will need monochrome / inverted / favicon-scale variants; direct should plan for that
+      rather than assume they exist.</p>
+      <div class="src">Source: _brand-extraction.json § logo</div>
+    </div>
+    <div class="tension">
+      <span class="badge">primary-token-drift · inferred</span>
+      <h4>Theme's generated link color doesn't match the brand's real gold</h4>
+      <p>The site's own <code>--ifm-color-primary</code> token is #bf9900 (a desaturated,
+      Docusaurus-generated mustard used for link/hover states), while the brand's actual
+      signature gold — confirmed by both the design blog and the favicon/logo asset — is
+      #f5c842. The token layer exists but doesn't track the real brand color; direct should pick
+      one.</p>
+      <div class="src">Source: pages/index.json § customProps (--ifm-color-primary) vs. assets/favicon.svg</div>
+    </div>
+    <div class="tension">
+      <span class="badge">undeclared-colors · synthesized</span>
+      <h4>Two colors ship outside the declared "three colors, and that's it" system</h4>
+      <p>The design blog is explicit: Wasp Yellow, Ink Black, and Blueprint Paper are the entire
+      palette. The live homepage also uses a violet accent (#7b42f5, the "AI" nav pill) and a
+      dark surface (#292435, testimonial/AI panels) — neither is mentioned in the declared
+      system. Direct needs to decide: deliberate exception worth keeping, or scope creep to cut.</p>
+      <div class="src">Source: design blog "three colors" claim vs. _brand-extraction.json § palette</div>
+    </div>
+    <div class="tension">
+      <span class="badge">font-not-loading · observed</span>
+      <h4>Declared primary heading font isn't actually rendering</h4>
+      <p>The design blog names JetBrains Mono as the primary typeface, "backed by" IBM Plex Mono
+      as fallback. The live page's captured styles show only IBM Plex Mono — JetBrains Mono
+      doesn't appear to be loading anywhere on the homepage.</p>
+      <div class="src">Source: design blog typography claim vs. pages/index.json § customProps (--ifm-heading-font-family)</div>
+    </div>
+    <div class="tension">
+      <span class="badge">sharp-corner-drift · observed</span>
+      <h4>Declared "90° angles, 2px strokes, no softness" law has two live exceptions</h4>
+      <p>The design blog states this as a hard rule. The live border-width token is 1px, not the
+      declared 2px, and the favicon/logo's own corner has a real radius (rx=300 of a 1520
+      viewBox) rather than a sharp 90° corner.</p>
+      <div class="src">Source: design blog shapes claim vs. --ifm-global-border-width and assets/favicon.svg</div>
+    </div>
+  </div>
+  <p style="margin-top:16px;color:var(--text-muted);font-size:.85rem">
+    Mechanical detectors requiring cross-page or per-element occurrence data
+    (T-radius-vocab, T-color-imbalance, T-cta-vocab, T-nav-conflict, T-tokens-unused's strict
+    framework-default match) were skipped rather than fired on inferred data — see Coverage.
+  </p>
+</section>
+
+<section id="motifs">
+  <h2>Motifs</h2>
+  <div class="motif-grid">
+    <div class="motif-card"><div class="motif-box" style="border-radius:0"></div>0px · cards, global default</div>
+    <div class="motif-card"><div class="motif-box" style="border-radius:3px"></div>3px · buttons, badges</div>
+    <div class="motif-card"><div class="motif-box" style="border-radius:6px"></div>6px · custom-border-radius-md token (unobserved on page)</div>
+    <div class="motif-card"><div class="motif-box" style="border-radius:3px;box-shadow:0 3px 5px 0px rgba(0,0,0,.1)"></div>Shadow · card-light</div>
+  </div>
+  <p style="margin-top:16px;color:var(--text-muted);font-size:.85rem">No gradients detected anywhere on the page — flat color throughout.</p>
+</section>
+
+<section id="components">
+  <h2>Components</h2>
+  <ul class="comp-list">
+    <li><span class="n">hero-with-code</span> — <span class="p">H1 + subcopy paired with a live .wasp.ts code-block visual</span></li>
+    <li><span class="n">numbered-eyebrow-sections</span> — <span class="p">01/02/03 numeral badges prefixing major section headings</span></li>
+    <li><span class="n">card-grid</span> — <span class="p">3-up feature cards, 3-up example-app cards, 3-up "AI loves Wasp" cards</span></li>
+    <li><span class="n">dark-panel-band</span> — <span class="p">full-bleed #292435 sections for "Perfect for AI" and testimonials</span></li>
+    <li><span class="n">cta-band</span> — <span class="p">full-width gold "Stay up to date" email-signup band</span></li>
+    <li><span class="n">faq-accordion</span> — <span class="p">"Frequently asked questions" section</span></li>
+    <li><span class="n">social-proof-strip</span> — <span class="p">avatar + quote testimonial cards</span></li>
+    <li><span class="n">roadmap-kanban</span> — <span class="p">"Roadmap" rendered as an Ideas/Planned kanban board</span></li>
+  </ul>
+</section>
+
+<section id="logo">
+  <h2>Logo & favicon</h2>
+  <div class="logo-row">
+    <img src="assets/media/wasp-logo.svg" alt="Wasp logo">
+    <dl>
+      <dt>Source</dt><dd>&lt;img alt="Wasp Logo"&gt; locator hit</dd>
+      <dt>File</dt><dd>SVG, 1520×1520 intrinsic</dd>
+      <dt>Variants captured</dt><dd>1 (gold field / dark mark, as favicon.svg and wasp-logo.svg)</dd>
+      <dt>Variants not captured</dt><dd>monochrome, inverted/on-dark, wordmark-only</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="spacing">
+  <h2>Spacing & shape</h2>
+  <p>Base unit: <strong>16px</strong> (1rem, single-unit rhythm — no wider spacing scale detected). Container max-width: <strong>1140px</strong>.</p>
+  <div class="radii-row">
+    <span class="pill">0px — cards, global default</span>
+    <span class="pill">3px — buttons, chips</span>
+    <span class="pill">6px — secondary token (unobserved)</span>
+  </div>
+</section>
+
+<footer class="review-footer">
+  <p>Generated by <code>stardust:extract</code> from PRODUCT.md, DESIGN.md, DESIGN.json,
+  _brand-extraction.json, pages/index.json, _crawl-log.json, and assets/screenshots/index.png —
+  homepage-only scope, https://wasp.sh, 2026-08-16. Benchmarked the same day against Wasp's own
+  <a href="https://wasp.sh/blog/2026/07/13/why-design-matters-for-a-web-framework">design blog
+  post</a>; declared-vs-observed drift is called out inline above and in DESIGN.md.</p>
+  <p>What's next: run <code>/stardust:direct</code> to resolve a redesign direction from this
+  current-state baseline (corrected against wasp.sh's design blog post per Pipeline.md step 2).</p>
+  <div class="legend">
+    <span class="badge">observed</span><span class="badge">home-only</span>
+    <span class="badge">cross-page</span><span class="badge">inferred</span><span class="badge">synthesized</span>
+  </div>
+</footer>

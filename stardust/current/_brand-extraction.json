@@ -1,0 +1,172 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:extract",
+    "writtenAt": "2026-08-16T05:20:00Z",
+    "readArtifacts": [
+      "https://wasp.sh/",
+      "stardust/current/pages/index.json"
+    ],
+    "synthesizedInputs": [],
+    "stardustVersion": "0.18.1",
+    "notes": [
+      "Single-page (homepage-only) extraction per pipeline scope — cross-page aggregation rules (system components, cross-promo, voiceTable frequency) are inert; each requires >=3 pages and is emitted empty per the skill's own threshold rule.",
+      "Colors/type/motifs are sourced from computed CSS custom properties captured on the live page (both the site's own --wasp-* brand tokens and the Docusaurus-theme --ifm-* tokens it customizes), cross-checked visually against the full-page screenshot — not a full per-element, frequency-weighted computed-style walk (the bundled crawl.mjs reference script captures customProps, not that). Treated as a reasonable single-page proxy, not the multi-page rigor the format spec describes.",
+      "Theme heading sizes (h1 2rem / h2 2rem / h3 1.3rem / h4 1rem) are Docusaurus defaults exposed via --ifm-h*-font-size. The rendered hero H1 in the screenshot is visibly much larger (~4x the h1 token), which means the homepage applies page-specific override CSS not exposed as a custom property. scaleRatio is left null rather than computed from a token set known not to reflect the actual hero.",
+      "home suggested link/accent color --ifm-color-primary = #bf9900 (a desaturated, theme-generated mustard used for links/hover states); this diverges from the brand's own signature gold --wasp-y = #f5c842 used in hero underlines, numbered badges, and CTA accents. Surfaced as a tension in brand-review.html (T-color-primary-drift).",
+      "BENCHMARKED 2026-08-16 against https://wasp.sh/blog/2026/07/13/why-design-matters-for-a-web-framework (Wasp's own design-system post). Confirmed independently-extracted #f5c842 and #f7f5f0 exactly. Corrected: declared ink is #111 (page renders #1c1e21, a Docusaurus default — kept both, flagged as drift); added declared gray #777777 and tint #fff3cc, previously omitted from the palette array. The declared system is explicitly 'three colors, and that's it' (yellow/ink/paper) — the violet (#7b42f5) and dark surface (#292435) entries are real, observed, but NOT part of the declared brand palette; role renamed accent-purple-undeclared / surface-dark-undeclared to make that explicit rather than implying they're sanctioned brand colors. Heading font is declared as JetBrains Mono backed by IBM Plex Mono — only the IBM Plex Mono fallback was found rendering on the live page. Design post also declares '90° angles, 2px strokes, no rounded-blob softness anywhere' — live border-width token is 1px (not 2px), and the favicon/logo's own corner radius (rx=300 of 1520) is a real softness exception to that stated law.",
+      "Palette capped at 8 entries per format spec; dropped the two gold/violet 'deep' hover-state variants (--wasp-yd #d4a930, --wasp-pd #5a30d4) captured pre-benchmark to make room for the design post's declared gray and tint, which are more load-bearing for direct's decisions than an undeclared hover shade."
+    ]
+  },
+  "site": {
+    "name": "Wasp",
+    "tagline": "Develop full-stack web apps without boilerplate.",
+    "originUrl": "https://wasp.sh"
+  },
+  "origins": [
+    {
+      "origin": "https://wasp.sh",
+      "role": "primary",
+      "pagesCaptured": 1,
+      "contributedSignals": []
+    }
+  ],
+  "logo": {
+    "source": "img",
+    "sourceSelector": "img[alt='Wasp Logo']",
+    "localPath": "stardust/current/assets/media/wasp-logo.svg",
+    "format": "svg",
+    "intrinsicWidth": 1520,
+    "intrinsicHeight": 1520,
+    "synthesized": false,
+    "synthesizedBasis": null
+  },
+  "favicon": {
+    "sourceSelector": "link[rel=icon]",
+    "localPath": "stardust/current/assets/favicon.svg",
+    "format": "svg"
+  },
+  "palette": [
+    { "role": "blueprint-paper", "value": "#f7f5f0", "occurrences": null, "sourceSelectors": ["--wasp-bg", "--ifm-background-color"], "sources": ["index", "design-blog:2026-07-13"], "usedAs": ["background"] },
+    { "role": "ink-black-declared", "value": "#111111", "occurrences": null, "sourceSelectors": ["design-blog:2026-07-13"], "sources": ["design-blog:2026-07-13"], "usedAs": ["text"] },
+    { "role": "ink-black-observed", "value": "#1c1e21", "occurrences": null, "sourceSelectors": ["--ifm-font-color-base", "--ifm-color-gray-900"], "sources": ["index"], "usedAs": ["text"] },
+    { "role": "wasp-yellow", "value": "#f5c842", "occurrences": null, "sourceSelectors": ["--wasp-y", "assets/favicon.svg fill"], "sources": ["index", "design-blog:2026-07-13"], "usedAs": ["background", "border", "text"] },
+    { "role": "gray", "value": "#777777", "occurrences": null, "sourceSelectors": ["--wasp-g5", "design-blog:2026-07-13"], "sources": ["design-blog:2026-07-13"], "usedAs": ["text", "border"] },
+    { "role": "tint", "value": "#fff3cc", "occurrences": null, "sourceSelectors": ["--wasp-yl", "design-blog:2026-07-13"], "sources": ["index", "design-blog:2026-07-13"], "usedAs": ["background"] },
+    { "role": "accent-purple-undeclared", "value": "#7b42f5", "occurrences": null, "sourceSelectors": ["--wasp-p"], "sources": ["index"], "usedAs": ["background", "text"], "notes": "Not part of the design post's declared three-color system." },
+    { "role": "surface-dark-undeclared", "value": "#292435", "occurrences": null, "sourceSelectors": ["--wasp-code-bg-pd"], "sources": ["index"], "usedAs": ["background"], "notes": "Not part of the design post's declared three-color system." }
+  ],
+  "type": {
+    "headingFamily": {
+      "name": "JetBrains Mono (declared) / IBM Plex Mono (observed fallback)",
+      "stack": "\"IBM Plex Mono\", monospace",
+      "declaredStack": "\"JetBrains Mono\", \"IBM Plex Mono\", monospace",
+      "weights": [600],
+      "sizes": ["2rem", "1.3rem", "1rem", ".875rem", ".85rem"],
+      "lineHeights": [1.25],
+      "letterSpacing": ["normal"],
+      "sourceSelectors": ["--ifm-heading-font-family", "--ifm-h1-font-size .. --ifm-h6-font-size", "design-blog:2026-07-13"],
+      "notes": "Design post declares JetBrains Mono as primary, 'backed by' IBM Plex Mono as fallback. Only IBM Plex Mono was found rendering/declared in the live page's captured customProps — JetBrains Mono does not appear to be loading."
+    },
+    "bodyFamily": {
+      "name": "IBM Plex Sans",
+      "stack": "\"IBM Plex Sans\", sans-serif",
+      "weights": [300, 400, 500, 700],
+      "sizes": ["1rem"],
+      "lineHeights": [1.65],
+      "letterSpacing": ["normal"],
+      "sourceSelectors": ["--ifm-font-family-base", "--ifm-font-weight-*", "--ifm-line-height-base"]
+    },
+    "monoFamily": {
+      "name": "SFMono-Regular / Menlo / Monaco (system mono stack)",
+      "stack": "SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace",
+      "weights": [400],
+      "sizes": ["1rem"],
+      "lineHeights": [1.45],
+      "letterSpacing": ["normal"],
+      "sourceSelectors": ["--ifm-font-family-monospace"]
+    },
+    "scaleRatio": null,
+    "scaleAudit": {
+      "kind": "ad-hoc",
+      "ratios": [1.0, 1.538, 1.3, 1.143, 1.029],
+      "matchedScale": null
+    },
+    "loadStrategy": "swap",
+    "files": []
+  },
+  "spacing": {
+    "baseUnit": 16,
+    "scale": ["1rem"],
+    "sectionPadding": null,
+    "containerMaxWidth": "1140px",
+    "gridGap": null
+  },
+  "motifs": {
+    "borderRadius": {
+      "primary": "0px",
+      "secondary": "3px",
+      "pill": null,
+      "primarySources": ["index"],
+      "occurrences": { "0px": null, "3px": null, "6px": null }
+    },
+    "shadows": [
+      { "value": "0 3px 5px 0px rgba(0,0,0,.1)", "uses": "cards (light)" },
+      { "value": "0 4px 12px rgba(0,0,0,.06)", "uses": "hover pop (shadow-pop)" },
+      { "value": "0 5px 40px rgba(0,0,0,.2)", "uses": "global/modal (md)" },
+      { "value": "0 12px 28px 0 rgba(0,0,0,.2), 0 2px 4px 0 rgba(0,0,0,.1)", "uses": "dropdowns/tooltips (tl)" }
+    ],
+    "gradients": [],
+    "patterns": [
+      { "name": "hero-with-code", "evidence": "hero pairs H1 + subcopy with a live code-block visual on the right (index)" },
+      { "name": "numbered-eyebrow-sections", "evidence": "sections labelled with small numeric eyebrows (01/02/03) — headings '01High Level', '02Batteries: Included', '03Fully Yours' (index)" },
+      { "name": "card-grid", "evidence": "3-up feature cards, 3-up example-app cards, 3-up 'AI loves Wasp' cards (index)" },
+      { "name": "dark-panel-band", "evidence": "full-bleed dark surface-dark (#292435) bands used for 'Perfect for AI' and testimonial sections (index)" },
+      { "name": "cta-band", "evidence": "full-width yellow 'Stay up to date' email-signup band (index)" },
+      { "name": "faq-accordion", "evidence": "'Frequently asked questions' section (index)" },
+      { "name": "social-proof-strip", "evidence": "avatar + quote testimonial cards (index)" },
+      { "name": "roadmap-kanban", "evidence": "'Roadmap' section styled as an Ideas/Planned kanban board (index)" }
+    ]
+  },
+  "componentStyle": {
+    "buttons": {
+      "primary": {
+        "background": "#1c1e21",
+        "color": "#f7f5f0",
+        "borderRadius": "3px",
+        "padding": "6px 24px",
+        "fontWeight": 700,
+        "shadow": null,
+        "hoverDelta": null
+      },
+      "secondary": { "background": "transparent", "color": "#1c1e21", "borderRadius": "3px", "border": "1px solid #dadde1" },
+      "ghost": null
+    },
+    "dualCTAPattern": "primary-then-secondary-outline",
+    "cards": { "background": "#ffffff", "borderRadius": "0px", "padding": "16px", "shadow": "0 3px 5px 0px rgba(0,0,0,.1)", "border": null },
+    "inputs": { "borderRadius": "3px", "padding": null, "border": "1px solid #dadde1", "focusRing": null }
+  },
+  "systemComponents": [],
+  "iconFont": null,
+  "voice": {
+    "heroHeadline": "A truly full-stack TypeScript framework that just works.",
+    "heroSubcopy": "React, Node.js, and Prisma — wired together with auth, jobs, and deployment built in. Ship in a day and own every line. Designed for humans, works beautifully with AI.",
+    "heroImage": null,
+    "heroMedium": null,
+    "primaryCTALabel": "Get Started",
+    "ctaSamples": ["Get Started", "See Documentation", "Docs", "GitHub", "Discord"],
+    "navItems": ["Docs", "Blog", "Examples", "Schedule", "GET THE BUZZ"],
+    "footerHeadings": ["Docs", "Community", "Company"],
+    "firstParagraph": "React, Node.js, and Prisma — wired together with auth, jobs, and deployment built in. Ship in a day and own every line. Designed for humans, works beautifully with AI.",
+    "tone": {
+      "guess": "technical-precise",
+      "evidence": "terse, developer-addressed copy ('Ship in a day and own every line'), code-block-driven proof over marketing adjectives, CLI-style '$ ask' prompts used as section headers"
+    }
+  },
+  "voiceTable": {
+    "ctaFrequency": [],
+    "headingFrequency": [],
+    "toneMetrics": { "headingsTotal": 36, "headingsUppercasePercent": 0, "distinctHeadings": 36, "distinctCtaLabels": null }
+  },
+  "crossPromo": { "detected": false, "anchorHeading": null, "cluster": [], "pages": [], "pageCount": 0, "totalPages": 1 },
+  "register": "brand"
+}

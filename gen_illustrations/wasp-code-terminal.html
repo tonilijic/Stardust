@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wasp code terminal</title>
+
+<!-- ============================================================
+     STYLES — everything is scoped under .wct, no global resets,
+     no dependencies. Safe to paste into an existing stylesheet.
+     Theme: follows prefers-color-scheme by default. Force a mode
+     with <div class="wct" data-theme="dark"> or "light".
+     ============================================================ -->
+<style>
+.wct {
+  --wct-surface: #ffffff;
+  --wct-surface-alt: #fafaf9;
+  --wct-border: rgba(0, 0, 0, 0.10);
+  --wct-border-strong: rgba(0, 0, 0, 0.18);
+  --wct-text: #171717;
+  --wct-text-dim: #6b7280;
+  --wct-text-faint: #a1a1aa;
+  --wct-kw: #a16207;
+  --wct-kw-bg: rgba(161, 98, 7, 0.10);
+  --wct-radius: 12px;
+  --wct-radius-sm: 6px;
+  --wct-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  font-family: var(--wct-mono);
+  font-size: 12px;
+  line-height: 1.85;
+  color: var(--wct-text);
+  background: var(--wct-surface);
+  border: 1px solid var(--wct-border);
+  border-radius: var(--wct-radius);
+  overflow: hidden;
+  max-width: 720px;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  .wct:not([data-theme="light"]) {
+    --wct-surface: #0b0b0b;
+    --wct-surface-alt: #151515;
+    --wct-border: rgba(255, 255, 255, 0.12);
+    --wct-border-strong: rgba(255, 255, 255, 0.22);
+    --wct-text: #ededed;
+    --wct-text-dim: #a1a1aa;
+    --wct-text-faint: #71717a;
+    --wct-kw: #eab308;
+    --wct-kw-bg: rgba(234, 179, 8, 0.14);
+  }
+}
+.wct[data-theme="dark"] {
+  --wct-surface: #0b0b0b;
+  --wct-surface-alt: #151515;
+  --wct-border: rgba(255, 255, 255, 0.12);
+  --wct-border-strong: rgba(255, 255, 255, 0.22);
+  --wct-text: #ededed;
+  --wct-text-dim: #a1a1aa;
+  --wct-text-faint: #71717a;
+  --wct-kw: #eab308;
+  --wct-kw-bg: rgba(234, 179, 8, 0.14);
+}
+
+/* --- window chrome --- */
+.wct-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--wct-surface-alt);
+  border-bottom: 1px solid var(--wct-border);
+}
+.wct-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--wct-border-strong);
+}
+.wct-title {
+  flex: 1;
+  margin-left: 6px;
+  font-size: 12px;
+  color: var(--wct-text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- tabs --- */
+.wct-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--wct-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.wct-tabs::-webkit-scrollbar { display: none; }
+.wct-tab {
+  font: inherit;
+  font-size: 12px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: var(--wct-radius-sm);
+  background: none;
+  color: var(--wct-text-faint);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.wct-tab:hover { color: var(--wct-text); background: var(--wct-surface-alt); }
+.wct-tab[aria-selected="true"] { color: var(--wct-text); background: var(--wct-kw-bg); }
+
+/* --- code panes --- */
+.wct-pane {
+  padding: 14px 0;
+  margin: 0;
+  overflow-x: auto;
+  counter-reset: wctline;
+}
+.wct-pane[hidden] { display: none; }
+.wct-line {
+  white-space: pre;
+  padding-right: 16px;
+  min-height: 1.85em;
+}
+.wct-line::before {
+  counter-increment: wctline;
+  content: counter(wctline);
+  display: inline-block;
+  width: 34px;
+  padding-right: 14px;
+  text-align: right;
+  color: var(--wct-text-faint);
+  user-select: none;
+}
+.wct-k { color: var(--wct-kw); }
+.wct-f { font-weight: 500; }
+.wct-s { color: var(--wct-text-dim); }
+.wct-c { color: var(--wct-text-dim); font-style: italic; }
+
+.wct :focus-visible { outline: 2px solid var(--wct-kw); outline-offset: 2px; }
+.wct-sr {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+</style>
+</head>
+<body style="margin:0;padding:32px;background:#f5f5f4;font-family:system-ui,sans-serif">
+
+<!-- ============================================================
+     MARKUP — one self-contained component. Copy from <div class="wct">
+     to its closing tag. Add data-theme="dark" to force dark mode.
+     ============================================================ -->
+<div class="wct">
+  <h2 class="wct-sr">Wasp to-do app source files</h2>
+
+  <div class="wct-bar">
+    <span class="wct-dot" aria-hidden="true"></span>
+    <span class="wct-dot" aria-hidden="true"></span>
+    <span class="wct-dot" aria-hidden="true"></span>
+    <span class="wct-title" data-wct-title>todo-app — main.wasp.ts</span>
+  </div>
+
+  <div class="wct-tabs" role="tablist" aria-label="Project files">
+    <button type="button" class="wct-tab" role="tab" aria-selected="true"  aria-controls="wct-p0" id="wct-t0">main.wasp.ts</button>
+    <button type="button" class="wct-tab" role="tab" aria-selected="false" aria-controls="wct-p1" id="wct-t1">MainPage.tsx</button>
+    <button type="button" class="wct-tab" role="tab" aria-selected="false" aria-controls="wct-p2" id="wct-t2">tasks.ts</button>
+    <button type="button" class="wct-tab" role="tab" aria-selected="false" aria-controls="wct-p3" id="wct-t3">schema.prisma</button>
+  </div>
+
+  <div class="wct-pane" id="wct-p0" role="tabpanel" aria-labelledby="wct-t0" tabindex="0"><div class="wct-line"><span class="wct-k">import</span> { app, page, query, route } <span class="wct-k">from</span> <span class="wct-s">"@wasp.sh/spec"</span>;</div>
+<div class="wct-line"><span class="wct-k">import</span> { MainPage } <span class="wct-k">from</span> <span class="wct-s">"./src/MainPage"</span> <span class="wct-k">with</span> { type: <span class="wct-s">"ref"</span> };</div>
+<div class="wct-line"><span class="wct-k">import</span> { getTasks } <span class="wct-k">from</span> <span class="wct-s">"./src/tasks"</span> <span class="wct-k">with</span> { type: <span class="wct-s">"ref"</span> };</div>
+<div class="wct-line"> </div>
+<div class="wct-line"><span class="wct-k">export default</span> <span class="wct-f">app</span>({</div>
+<div class="wct-line">  wasp: { version: <span class="wct-s">"^0.24.0"</span> },</div>
+<div class="wct-line">  title: <span class="wct-s">"ToDo App"</span>,</div>
+<div class="wct-line">  auth: {  <span class="wct-c">// Full-stack auth out-of-the-box.</span></div>
+<div class="wct-line">    userEntity: <span class="wct-s">"User"</span>,</div>
+<div class="wct-line">    methods: { google: {}, gitHub: {}, email: {} },</div>
+<div class="wct-line">    onAuthFailedRedirectTo: <span class="wct-s">"/login"</span></div>
+<div class="wct-line">  },</div>
+<div class="wct-line">  spec: [</div>
+<div class="wct-line">    <span class="wct-f">route</span>(<span class="wct-s">"RootRoute"</span>, <span class="wct-s">"/"</span>, <span class="wct-f">page</span>(MainPage, {</div>
+<div class="wct-line">      authRequired: <span class="wct-k">true</span></div>
+<div class="wct-line">    })),</div>
+<div class="wct-line">    <span class="wct-f">query</span>(getTasks, {</div>
+<div class="wct-line">      entities: [<span class="wct-s">"Task"</span>]  <span class="wct-c">// Automatic cache invalidation.</span></div>
+<div class="wct-line">    })</div>
+<div class="wct-line">  ]</div>
+<div class="wct-line">});</div>
+  </div>
+
+  <div class="wct-pane" id="wct-p1" role="tabpanel" aria-labelledby="wct-t1" tabindex="0" hidden><div class="wct-line"><span class="wct-k">import</span> { getTasks, useQuery } <span class="wct-k">from</span> <span class="wct-s">"wasp/client/operations"</span>;</div>
+<div class="wct-line"> </div>
+<div class="wct-line"><span class="wct-k">export function</span> <span class="wct-f">MainPage</span>() {</div>
+<div class="wct-line">  <span class="wct-k">const</span> { data: tasks } = <span class="wct-f">useQuery</span>(getTasks);</div>
+<div class="wct-line"> </div>
+<div class="wct-line">  <span class="wct-k">return</span> (</div>
+<div class="wct-line">    &lt;<span class="wct-k">div</span>&gt;</div>
+<div class="wct-line">      &lt;<span class="wct-k">h1</span>&gt;Tasks&lt;/<span class="wct-k">h1</span>&gt;</div>
+<div class="wct-line">      {tasks?.<span class="wct-f">map</span>((task) =&gt; (</div>
+<div class="wct-line">        &lt;<span class="wct-k">div</span> <span class="wct-f">key</span>={task.id}&gt;{task.description}&lt;/<span class="wct-k">div</span>&gt;</div>
+<div class="wct-line">      ))}</div>
+<div class="wct-line">    &lt;/<span class="wct-k">div</span>&gt;</div>
+<div class="wct-line">  );</div>
+<div class="wct-line">}</div>
+  </div>
+
+  <div class="wct-pane" id="wct-p2" role="tabpanel" aria-labelledby="wct-t2" tabindex="0" hidden><div class="wct-line"><span class="wct-k">import</span> { <span class="wct-k">type</span> <span class="wct-f">GetTasks</span> } <span class="wct-k">from</span> <span class="wct-s">"wasp/server/operations"</span>;</div>
+<div class="wct-line"><span class="wct-k">import</span> { <span class="wct-f">HttpError</span> } <span class="wct-k">from</span> <span class="wct-s">"wasp/server"</span>;</div>
+<div class="wct-line"><span class="wct-k">import</span> { Task } <span class="wct-k">from</span> <span class="wct-s">"wasp/entities"</span>;</div>
+<div class="wct-line"> </div>
+<div class="wct-line"><span class="wct-k">export const</span> getTasks: <span class="wct-f">GetTasks</span>&lt;<span class="wct-k">void</span>, Task[]&gt; = <span class="wct-k">async</span> (</div>
+<div class="wct-line">  _args,</div>
+<div class="wct-line">  context</div>
+<div class="wct-line">) =&gt; {</div>
+<div class="wct-line">  <span class="wct-k">if</span> (!context.user) <span class="wct-k">throw new</span> <span class="wct-f">HttpError</span>(401);</div>
+<div class="wct-line"> </div>
+<div class="wct-line">  <span class="wct-k">return</span> context.entities.Task.<span class="wct-f">findMany</span>({</div>
+<div class="wct-line">    where: { user: { id: context.user.id } },</div>
+<div class="wct-line">    orderBy: { id: <span class="wct-s">"desc"</span> },</div>
+<div class="wct-line">  });</div>
+<div class="wct-line">};</div>
+  </div>
+
+  <div class="wct-pane" id="wct-p3" role="tabpanel" aria-labelledby="wct-t3" tabindex="0" hidden><div class="wct-line"><span class="wct-k">model</span> <span class="wct-f">User</span> {</div>
+<div class="wct-line">  id    <span class="wct-f">Int</span>     <span class="wct-c">@id @default(</span><span class="wct-f">autoincrement</span><span class="wct-c">())</span></div>
+<div class="wct-line">  email <span class="wct-f">String</span>  <span class="wct-c">@unique</span></div>
+<div class="wct-line">  tasks <span class="wct-f">Task</span>[]</div>
+<div class="wct-line">}</div>
+<div class="wct-line"> </div>
+<div class="wct-line"><span class="wct-k">model</span> <span class="wct-f">Task</span> {</div>
+<div class="wct-line">  id          <span class="wct-f">Int</span>     <span class="wct-c">@id @default(</span><span class="wct-f">autoincrement</span><span class="wct-c">())</span></div>
+<div class="wct-line">  description <span class="wct-f">String</span></div>
+<div class="wct-line">  isDone      <span class="wct-f">Boolean</span> <span class="wct-c">@default(false)</span></div>
+<div class="wct-line">  user        <span class="wct-f">User</span>    <span class="wct-c">@relation(fields: [userId], references: [id])</span></div>
+<div class="wct-line">  userId      <span class="wct-f">Int</span></div>
+<div class="wct-line">}</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCRIPT — no dependencies. Initialises every .wct on the page.
+     Call WaspCodeTerminal.init(root) manually if you inject markup
+     after load (e.g. from a framework).
+     ============================================================ -->
+<script>
+(function (global) {
+  function init(root) {
+    if (!root || root.dataset.wctReady === "1") return;
+    root.dataset.wctReady = "1";
+
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+    var title = root.querySelector("[data-wct-title]");
+    var project = title ? title.textContent.split("—")[0].trim() : "";
+
+    function select(tab) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        var pane = root.querySelector("#" + t.getAttribute("aria-controls"));
+        if (pane) pane.hidden = !on;
+      });
+      if (title) title.textContent = project + " — " + tab.textContent;
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener("click", function () { select(tab); });
+      tab.addEventListener("keydown", function (e) {
+        var next = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : -1;
+        if (next < 0 || next >= tabs.length) return;
+        e.preventDefault();
+        tabs[next].focus();
+        select(tabs[next]);
+      });
+    });
+  }
+
+  function initAll(scope) {
+    (scope || document).querySelectorAll(".wct").forEach(init);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () { initAll(); });
+  } else {
+    initAll();
+  }
+
+  global.WaspCodeTerminal = { init: init, initAll: initAll };
+})(window);
+</script>
+</body>
+</html>

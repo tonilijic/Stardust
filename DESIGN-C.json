@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-16T06:10:00Z",
+  "title": "Design System: Wasp — Variant C (The Spec Document)",
+  "extensions": {
+    "colorMeta": {
+      "blueprint-paper": { "role": "neutral", "displayName": "Blueprint Paper", "canonical": "#f7f5f0" },
+      "ink-black": { "role": "neutral", "displayName": "Ink Black", "canonical": "#111111" },
+      "wasp-yellow": { "role": "primary", "displayName": "Wasp Yellow", "canonical": "#f5c842" },
+      "gray": { "role": "neutral", "displayName": "Gray", "canonical": "#777777" },
+      "tint": { "role": "neutral", "displayName": "Tint", "canonical": "#fff3cc" },
+      "accent-purple": { "role": "secondary", "displayName": "Annotation Violet", "canonical": "#7b42f5", "notes": "Captured but undeclared color; bounded here to margin-annotation use only." }
+    },
+    "typographyMeta": {
+      "heading": { "displayName": "Heading + structural label (JetBrains Mono)", "purpose": "Section titles, running section numbering, field captions." },
+      "prose": { "displayName": "Body prose (IBM Plex Sans)", "purpose": "Paragraph-length copy only." }
+    },
+    "shadows": [],
+    "motion": {
+      "register": "editorial",
+      "registerRationale": "PRODUCT.md + RFC/spec-document framing: slow-paced, publication-register reading rhythm matches editorial per motion-registers.md.",
+      "easings": { "entrance": "cubic-bezier(0.16,1,0.3,1)", "transition": "ease-out" },
+      "durations": { "enter": 350, "stagger": 40 },
+      "parallax": { "translate": 2, "fade": 0.1, "rangeStart": 0, "range": 30 }
+    },
+    "divergence": {
+      "mode": "brand-faithful",
+      "signalClassification": "signal-strong",
+      "seed": {
+        "decade": { "value": "2025-now", "picked_by": "brand-inherited" },
+        "craft": { "value": "terminal / RFC document", "picked_by": "reasoned: literal amplification of the existing numbered-eyebrow motif into a running spec-document structure" },
+        "register": { "value": "spec-document", "picked_by": "reasoned: amplifies the numbered-eyebrow trait already present site-wide" },
+        "ground_family": { "value": "brand-native (Blueprint Paper)", "override": { "reason": "brand-faithful" } }
+      },
+      "font_deck": { "name": "brand-inherited, mono-forward", "picked_by": "user-constraint" },
+      "palette": { "source": "inherited from _brand-extraction.json, full captured 6-color set (declared + violet)", "picked_by": "user-constraint" },
+      "amplifiedTrait": { "trait": "numbered-eyebrow-sections", "evidence": "motifs.patterns[numbered-eyebrow-sections] — '01High Level', '02Batteries: Included', '03Fully Yours'", "amplification": "isolated per-section badges become a persistent running §-numbered margin down the whole page" }
+    },
+    "componentStyle": {
+      "buttons": { "primary": { "background": "ink-black", "color": "blueprint-paper", "borderRadius": "0px" } },
+      "cards": { "background": "transparent", "borderRadius": "0px", "border": "1px solid gray", "notes": "Rule-delimited, not shadow-elevated — printed-document read." }
+    },
+    "systemComponentRoles": {
+      "header": { "purpose": "primary nav + conversion CTA", "position": "sticky-top" },
+      "footer": { "purpose": "docs/community/company link groups", "position": "page-end" },
+      "cta-band": { "purpose": "email capture", "position": "mid-page, full-bleed" },
+      "running-margin": { "purpose": "continuous § section numbering, spec-document signature", "position": "sticky-left-desktop, full page height" }
+    },
+    "voice": { "do": ["Ship Get Started", "See Documentation"], "dont": ["Don't invent new CTA labels"] },
+    "iaPriorities": [
+      { "signal": "primary-conversion-cta", "evidence": "pages/index.json#ctas — 'Get Started' appears in both nav and hero", "preserveAs": "first-viewport", "scope": "site-wide", "mutability": "movable" },
+      { "signal": "dual-audience-routing", "evidence": "pages/index.json#headings — dedicated 'Perfect for AI, by design' section", "preserveAs": "dedicated-section", "scope": "site-wide", "mutability": "movable" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Running Section Marker",
+      "kind": "custom",
+      "refersTo": "running-margin",
+      "description": "Continuous §-numbered clause marker in the left margin.",
+      "html": "<div class=\"ds-clause\">§2.1</div>",
+      "css": ".ds-clause { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; color: #777777; position: sticky; top: 24px; }"
+    },
+    {
+      "name": "Margin Annotation",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Violet-accented aside anchored in the right margin.",
+      "html": "<aside class=\"ds-annotation\">AI-native by design →</aside>",
+      "css": ".ds-annotation { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #7b42f5; border-left: 2px solid #7b42f5; padding-left: 8px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The RFC",
+    "overview": "The existing per-section numbered badges are taken literally into a continuous running section-clause numbering, like an RFC or the .wasp.ts spec files themselves.",
+    "keyCharacteristics": [
+      "Persistent running §-numbering in the left margin",
+      "Violet repurposed as a bounded 'reviewer annotation' accent",
+      "Structural micro-labels set in monospace even where body copy is sans",
+      "Section dividers are literal rules with a § marker"
+    ],
+    "rules": [
+      { "name": "The Margin-Note Rule", "body": "Violet appears only as a small, clearly-secondary annotation mark — never a primary surface color.", "section": "colors" }
+    ],
+    "dos": ["Run section numbering continuously, not as isolated badges.", "Confine violet strictly to margin-annotation use."],
+    "donts": ["Don't let JetBrains Mono creep into paragraph prose.", "Don't use violet as a section background or button color."]
+  }
+}

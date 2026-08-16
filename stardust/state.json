@@ -1,0 +1,49 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:prototype",
+    "writtenAt": "2026-08-16T07:55:00Z",
+    "stardustVersion": "0.18.1"
+  },
+  "site": {
+    "originUrl": "https://wasp.sh",
+    "deployUrl": null,
+    "extractedAt": "2026-08-16T05:15:05.752Z",
+    "pageCap": 1,
+    "totalDiscovered": 1,
+    "crawled": 1
+  },
+  "direction": {
+    "resolvedAt": "2026-08-16T06:15:00Z",
+    "phrase": "(none — brand-driven delegation per Pipeline.md)",
+    "directionFile": "stardust/direction.md",
+    "iaFidelity": "reimagined",
+    "variantMode": true,
+    "selectedVariant": "A",
+    "selectedAt": "2026-08-16T09:00:00Z",
+    "variants": [
+      { "id": "A", "name": "The Ratified Spec", "designFile": "DESIGN-A.md", "sidecarFile": "DESIGN-A.json", "prototypePath": "stardust/prototypes/index-A-proposed.html", "shapeBrief": "stardust/prototypes/index-A-shape.md", "screenshot": "Screenshots/direction-1.jpeg", "selected": true, "iteratedScreenshot": "Screenshots/final-A.jpeg" },
+      { "id": "B", "name": "The Circuit Diagram", "designFile": "DESIGN-B.md", "sidecarFile": "DESIGN-B.json", "prototypePath": "stardust/prototypes/index-B-proposed.html", "shapeBrief": "stardust/prototypes/index-B-shape.md", "screenshot": "Screenshots/direction-2.jpeg" },
+      { "id": "C", "name": "The RFC", "designFile": "DESIGN-C.md", "sidecarFile": "DESIGN-C.json", "prototypePath": "stardust/prototypes/index-C-proposed.html", "shapeBrief": "stardust/prototypes/index-C-shape.md", "screenshot": "Screenshots/direction-3.jpeg" }
+    ]
+  },
+  "pages": [
+    {
+      "slug": "index",
+      "url": "https://wasp.sh/",
+      "title": "Wasp",
+      "type": "landing",
+      "status": "iterated",
+      "history": [
+        { "status": "extracted", "at": "2026-08-16T05:15:05.752Z" },
+        { "status": "directed", "at": "2026-08-16T06:15:00Z" },
+        { "status": "prototyped", "at": "2026-08-16T07:55:00Z" },
+        { "status": "iterated", "at": "2026-08-16T09:15:00Z", "note": "Variant A selected; scroll-spy added; 2 confirmed contrast defects fixed (roadmap badge, footer privacy link); newsletter input focus-visible restored" }
+      ],
+      "stale": false,
+      "staleReason": null,
+      "currentStatePath": "stardust/current/pages/index.json",
+      "prototypePath": "stardust/prototypes/index-A-proposed.html",
+      "migratedPath": null
+    }
+  ]
+}

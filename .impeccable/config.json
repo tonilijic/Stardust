@@ -1,0 +1,28 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [
+      "stardust/current/brand-review.html"
+    ],
+    "ignoreValues": [
+      {
+        "rule": "gray-on-color",
+        "value": "text #5f5f5f on bg #fff3cc",
+        "files": [
+          "stardust/prototypes/index-A-proposed.html"
+        ],
+        "createdAt": "2026-08-16T05:54:01.003Z",
+        "reason": "rail-nav hover/active state only (transient, not resting body text) — cosmetic nit, not worth complicating the hover CSS for"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "stardust/prototypes/index-A-proposed.html"
+        ],
+        "createdAt": "2026-08-16T08:24:39.520Z",
+        "reason": "native <details>::details-content open/close height transition is the current browser-documented technique for animating disclosure widgets; transform/opacity alone can't reflow sibling FAQ items, which is the point of the accordion. Verified genuinely eased (not snapping) via measured layout height, both directions."
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Illustration — Kanban board</title>
+<style>
+  :root { --yellow: #e8c565; --light: #f5ecd6; }
+  body {
+    margin: 0;
+    padding: 40px;
+    background: #f7f6f4;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+  }
+  .tile { width: 220px; height: 220px; display: flex; align-items: center; justify-content: center; }
+  svg { width: 180px; height: 180px; }
+</style>
+</head>
+<body>
+
+<div class="tile">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="20" width="48" height="160" fill="none" stroke="#111" stroke-width="1.1"/>
+    <rect x="76" y="20" width="48" height="160" fill="none" stroke="#111" stroke-width="1.1"/>
+    <rect x="132" y="20" width="48" height="160" fill="none" stroke="#111" stroke-width="1.1"/>
+
+    <rect x="26" y="30" width="36" height="24" fill="var(--light)" stroke="#111" stroke-width="1.1"/>
+    <rect x="26" y="60" width="36" height="24" fill="var(--light)" stroke="#111" stroke-width="1.1"/>
+
+    <rect x="82" y="30" width="36" height="24" fill="var(--yellow)" stroke="#111" stroke-width="1.1"/>
+    <rect x="82" y="60" width="36" height="24" fill="var(--light)" stroke="#111" stroke-width="1.1"/>
+    <rect x="82" y="90" width="36" height="24" fill="var(--light)" stroke="#111" stroke-width="1.1"/>
+
+    <rect x="138" y="30" width="36" height="24" fill="var(--light)" stroke="#111" stroke-width="1.1"/>
+  </svg>
+</div>
+
+</body>
+</html>

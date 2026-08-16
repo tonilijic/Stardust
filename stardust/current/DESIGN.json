@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-16T05:25:00Z",
+  "title": "Design System: Wasp (current state)",
+  "extensions": {
+    "colorMeta": {
+      "blueprint-paper": { "role": "neutral", "displayName": "Blueprint Paper", "canonical": "#f7f5f0" },
+      "ink-black": { "role": "neutral", "displayName": "Ink Black", "canonical": "#111111", "notes": "Declared value per design blog; live page renders #1c1e21." },
+      "wasp-yellow": { "role": "primary", "displayName": "Wasp Yellow", "canonical": "#f5c842" },
+      "gray": { "role": "neutral", "displayName": "Gray", "canonical": "#777777", "notes": "Declared per design blog; live hairline borders render #dadde1 instead." },
+      "tint": { "role": "neutral", "displayName": "Tint", "canonical": "#fff3cc" },
+      "accent-purple-undeclared": { "role": "secondary", "displayName": "Signal Violet (undeclared)", "canonical": "#7b42f5", "notes": "Not part of the design blog's declared three-color system." },
+      "surface-dark-undeclared": { "role": "neutral", "displayName": "Deep Surface (undeclared)", "canonical": "#292435", "notes": "Not part of the design blog's declared three-color system." }
+    },
+    "typographyMeta": {
+      "heading": { "displayName": "Heading (JetBrains Mono declared / IBM Plex Mono observed)", "purpose": "Section titles, numbered eyebrows — signals 'spec/terminal', not decorative. Design blog declares JetBrains Mono primary; only the IBM Plex Mono fallback renders on the live page." },
+      "body": { "displayName": "Body (IBM Plex Sans)", "purpose": "Paragraph copy, feature descriptions." },
+      "mono": { "displayName": "Code (system mono)", "purpose": "Literal .wasp.ts code samples." }
+    },
+    "shadows": [
+      { "name": "card-light", "value": "0 3px 5px 0px rgba(0,0,0,.1)", "purpose": "Light resting elevation on card-like surfaces." },
+      { "name": "hover-pop", "value": "0 4px 12px rgba(0,0,0,.06)", "purpose": "Interactive/hover state." },
+      { "name": "overlay", "value": "0 12px 28px 0 rgba(0,0,0,.2), 0 2px 4px 0 rgba(0,0,0,.1)", "purpose": "Dropdowns/tooltips (theme token; not directly observed in the captured hero viewport)." }
+    ],
+    "motion": [],
+    "breakpoints": []
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main CTA, e.g. 'Get Started'.",
+      "html": "<button class=\"ds-btn-primary\">Get Started</button>",
+      "css": ".ds-btn-primary { background: #1c1e21; color: #f7f5f0; padding: 6px 24px; font-weight: 700; border: none; border-radius: 3px; transition: opacity 0.15s; } .ds-btn-primary:hover { opacity: 0.85; } .ds-btn-primary:focus-visible { outline: 2px solid #f5c842; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outline CTA, e.g. 'See Documentation'.",
+      "html": "<button class=\"ds-btn-secondary\">See Documentation</button>",
+      "css": ".ds-btn-secondary { background: transparent; color: #1c1e21; padding: 6px 24px; font-weight: 700; border: 1px solid #dadde1; border-radius: 3px; transition: border-color 0.15s; } .ds-btn-secondary:hover { border-color: #1c1e21; } .ds-btn-secondary:focus-visible { outline: 2px solid #f5c842; outline-offset: 2px; }"
+    },
+    {
+      "name": "Feature Card",
+      "kind": "card",
+      "refersTo": null,
+      "description": "3-up feature/example cards used across 'Batteries: Included' and example-app grids.",
+      "html": "<div class=\"ds-card\"><h4>Full-Stack Auth</h4><p>username · email · social</p></div>",
+      "css": ".ds-card { background: #ffffff; border-radius: 0px; padding: 16px; box-shadow: 0 3px 5px 0px rgba(0,0,0,.1); font-family: \"IBM Plex Sans\", sans-serif; } .ds-card h4 { font-family: \"IBM Plex Mono\", monospace; font-weight: 600; margin: 0 0 8px; }"
+    },
+    {
+      "name": "Numbered Eyebrow",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Signature bordered numeral badge prefixing section headings (01/02/03).",
+      "html": "<span class=\"ds-eyebrow\">01</span>",
+      "css": ".ds-eyebrow { display: inline-block; border: 1px solid #f5c842; color: #1c1e21; font-family: \"IBM Plex Mono\", monospace; font-weight: 600; font-size: 0.75rem; padding: 2px 8px; border-radius: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": null,
+    "overview": "Wasp's homepage reads as a developer-tool spec sheet, not a conventional SaaS marketing page: a cream/parchment ground, blocky sharp-edged panels, a monospace heading face, and literal code blocks used as proof rather than illustration.",
+    "keyCharacteristics": [
+      "Cream/parchment ground, not white",
+      "Monospace headings paired with a humanist sans body",
+      "Mostly square, sharp-edged surfaces (radius 0-3px)",
+      "Flat color throughout — no gradients"
+    ],
+    "rules": [
+      { "name": "The Three-Colors Rule", "body": "Per the team's own design blog: \"Three colors, and that's it.\" Wasp Yellow (#f5c842), Ink Black (#111), and Blueprint Paper (#f7f5f0) are the entire declared system; the violet accent and dark surface panel are shipped exceptions, not sanctioned brand colors.", "section": "colors" },
+      { "name": "The Sharp-Corner Rule", "body": "\"90° angles, 2px strokes, no rounded-blob softness anywhere\" — stated directly in the design blog. Live implementation mostly honors this (0px card radius) but ships 1px borders (not 2px) and a rounded-square logo/favicon corner (rx=300).", "section": "shapes" }
+    ],
+    "dos": [
+      "Do treat #f5c842 (Wasp Yellow, confirmed by both the design blog and the favicon/logo) as the one true brand gold.",
+      "Do keep headings in a monospace face — load-bearing for the spec/terminal positioning; ship the declared JetBrains Mono rather than silently falling back to IBM Plex Mono only.",
+      "Do keep surfaces sharp-edged per the team's own 90°-angle law.",
+      "Do keep the theme light-first — the design blog states this is deliberate, not an oversight."
+    ],
+    "donts": [
+      "Don't treat the violet accent or dark surface panel as core brand colors — neither is in the declared three-color system.",
+      "Don't introduce gradients — none exist anywhere in the current implementation.",
+      "Don't assume the shipped 1px border-width or the logo's rounded corner are the intended standard — the design blog declares 2px strokes and zero corner softness."
+    ]
+  }
+}

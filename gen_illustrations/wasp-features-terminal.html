@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wasp features</title>
+
+<!-- ============================================================
+     STYLES — scoped under .wcf, no global resets, no dependencies.
+     Light theme only. Fixed height, internal scroll -> no layout shift.
+     Master (feature list) on the left, code preview on the right.
+     ============================================================ -->
+<style>
+.wcf {
+  --wcf-surface: #ffffff;
+  --wcf-surface-alt: #fafaf9;
+  --wcf-hover: #f4f1ea;
+  --wcf-sel: rgba(161, 98, 7, 0.10);
+  --wcf-border: rgba(0, 0, 0, 0.10);
+  --wcf-border-strong: rgba(0, 0, 0, 0.18);
+  --wcf-text: #171717;
+  --wcf-text-dim: #6b7280;
+  --wcf-text-faint: #a1a1aa;
+  --wcf-kw: #a16207;
+  --wcf-radius: 12px;
+  --wcf-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Single knob for overall height. */
+  --wcf-body-height: 440px;
+
+  font-family: var(--wcf-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--wcf-text);
+  background: var(--wcf-surface);
+  border: 1px solid var(--wcf-border);
+  border-radius: var(--wcf-radius);
+  overflow: hidden;
+  max-width: 760px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- window chrome --- */
+.wcf-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  background: var(--wcf-surface-alt);
+  border-bottom: 1px solid var(--wcf-border);
+}
+.wcf-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--wcf-border-strong); }
+.wcf-titlebar { margin-left: 6px; font-size: 12px; color: var(--wcf-text-dim); }
+
+/* --- two-pane split --- */
+.wcf-split { display: flex; height: var(--wcf-body-height); }
+
+/* left: feature list */
+.wcf-list {
+  flex: 0 0 248px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--wcf-border);
+  min-width: 0;
+}
+.wcf-rows { flex: 1; overflow: auto; padding: 8px; }
+.wcf-row {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 8px;
+  align-items: baseline;
+  width: 100%;
+  text-align: left;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.wcf-row:hover { background: var(--wcf-hover); }
+.wcf-row[aria-selected="true"] { background: var(--wcf-sel); }
+.wcf-idx { color: var(--wcf-text-faint); }
+.wcf-name { color: var(--wcf-text); }
+.wcf-row[aria-selected="true"] .wcf-name { font-weight: 500; }
+.wcf-tags { display: block; color: var(--wcf-text-dim); font-size: 11px; margin-top: 2px; }
+
+.wcf-docs {
+  border-top: 1px solid var(--wcf-border);
+  padding: 12px 16px;
+}
+.wcf-docs a { color: var(--wcf-kw); text-decoration: none; }
+.wcf-docs a:hover { text-decoration: underline; }
+
+/* right: code preview */
+.wcf-preview { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.wcf-file {
+  padding: 8px 16px;
+  font-size: 12px;
+  color: var(--wcf-text-dim);
+  background: var(--wcf-surface-alt);
+  border-bottom: 1px solid var(--wcf-border);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.wcf-code { flex: 1; position: relative; overflow: hidden; }
+.wcf-pane {
+  position: absolute; inset: 0;
+  overflow: auto;
+  padding: 12px 0;
+  counter-reset: wcfline;
+}
+.wcf-pane[hidden] { display: none; }
+.wcf-line { white-space: pre; padding-right: 16px; min-height: 1.6em; }
+.wcf-line::before {
+  counter-increment: wcfline;
+  content: counter(wcfline);
+  display: inline-block;
+  width: 34px; padding-right: 14px;
+  text-align: right;
+  color: var(--wcf-text-faint);
+  user-select: none;
+}
+.wcf-k { color: var(--wcf-kw); }
+.wcf-f { font-weight: 500; }
+.wcf-s { color: var(--wcf-text-dim); }
+.wcf-c { color: var(--wcf-text-dim); font-style: italic; }
+
+.wcf :focus-visible { outline: 2px solid var(--wcf-kw); outline-offset: 2px; }
+.wcf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* stack on narrow screens; each pane keeps a fixed height (no shift) */
+@media (max-width: 640px) {
+  .wcf-split { flex-direction: column; height: auto; }
+  .wcf-list { flex: none; border-right: none; border-bottom: 1px solid var(--wcf-border); }
+  .wcf-rows { max-height: 200px; }
+  .wcf-preview { height: 300px; }
+}
+</style>
+</head>
+<body style="margin:0;padding:32px;background:#f5f5f4;font-family:system-ui,sans-serif">
+
+<!-- ============================================================
+     MARKUP — self-contained. Copy from <div class="wcf"> to its close.
+     Left buttons drive the right-hand preview panes by id.
+     ============================================================ -->
+<div class="wcf">
+  <h2 class="wcf-sr">Wasp full-stack features with a code preview for the selected feature</h2>
+
+  <div class="wcf-bar">
+    <span class="wcf-dot" aria-hidden="true"></span>
+    <span class="wcf-dot" aria-hidden="true"></span>
+    <span class="wcf-dot" aria-hidden="true"></span>
+    <span class="wcf-titlebar">wasp — features</span>
+  </div>
+
+  <div class="wcf-split">
+    <!-- LEFT: feature list -->
+    <div class="wcf-list">
+      <div class="wcf-rows" role="tablist" aria-label="Wasp features" data-wcf-list>
+        <button class="wcf-row" role="tab" aria-selected="true"  aria-controls="wcf-01" type="button"><span class="wcf-idx">01</span><span><span class="wcf-name">High-Level Spec</span><span class="wcf-tags">app, auth, route, ...</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-02" type="button"><span class="wcf-idx">02</span><span><span class="wcf-name">Full-Stack Auth</span><span class="wcf-tags">username · email · social</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-03" type="button"><span class="wcf-idx">03</span><span><span class="wcf-name">Data Models</span><span class="wcf-tags">typed · integrated</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-04" type="button"><span class="wcf-idx">04</span><span><span class="wcf-name">Type-Safe RPC</span><span class="wcf-tags">typed client ↔ server</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-05" type="button"><span class="wcf-idx">05</span><span><span class="wcf-name">Background Jobs</span><span class="wcf-tags">cron · one-off · retry</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-06" type="button"><span class="wcf-idx">06</span><span><span class="wcf-name">Email Sending</span><span class="wcf-tags">provider-agnostic</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-07" type="button"><span class="wcf-idx">07</span><span><span class="wcf-name">WebSockets</span><span class="wcf-tags">typed real-time</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-08" type="button"><span class="wcf-idx">08</span><span><span class="wcf-name">Static Rendering</span><span class="wcf-tags">SSG for SEO &amp; LLMs</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-09" type="button"><span class="wcf-idx">09</span><span><span class="wcf-name">Simple Deployment</span><span class="wcf-tags">one command, any platform</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-10" type="button"><span class="wcf-idx">10</span><span><span class="wcf-name">Type-Safe Links</span><span class="wcf-tags">typed routes &amp; params</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-11" type="button"><span class="wcf-idx">11</span><span><span class="wcf-name">Custom HTTP API</span><span class="wcf-tags">REST · webhooks</span></span></button>
+        <button class="wcf-row" role="tab" aria-selected="false" aria-controls="wcf-12" type="button"><span class="wcf-idx">12</span><span><span class="wcf-name">Wasp CLI</span><span class="wcf-tags">create · build · deploy</span></span></button>
+      </div>
+      <div class="wcf-docs"><a href="https://wasp.sh/docs">... see all in the docs →</a></div>
+    </div>
+
+    <!-- RIGHT: code preview -->
+    <div class="wcf-preview">
+      <div class="wcf-file" data-wcf-file>main.wasp.ts</div>
+      <div class="wcf-code">
+
+<div class="wcf-pane" id="wcf-01" role="tabpanel" data-file="main.wasp.ts" tabindex="0"><div class="wcf-line"><span class="wcf-k">import</span> { app, page, query, route } <span class="wcf-k">from</span> <span class="wcf-s">"@wasp.sh/spec"</span>;</div>
+<div class="wcf-line"> </div>
+<div class="wcf-line"><span class="wcf-k">export default</span> <span class="wcf-f">app</span>({</div>
+<div class="wcf-line">  name: <span class="wcf-s">"todoApp"</span>,</div>
+<div class="wcf-line">  wasp: { version: <span class="wcf-s">"^0.24.0"</span> },</div>
+<div class="wcf-line">  auth: {</div>
+<div class="wcf-line">    userEntity: <span class="wcf-s">"User"</span>,</div>
+<div class="wcf-line">    methods: { email: {}, google: {} }</div>
+<div class="wcf-line">  },</div>
+<div class="wcf-line">  spec: [</div>
+<div class="wcf-line">    <span class="wcf-f">route</span>(<span class="wcf-s">"HomeRoute"</span>, <span class="wcf-s">"/"</span>, <span class="wcf-f">page</span>(HomePage)),</div>
+<div class="wcf-line">    <span class="wcf-f">query</span>(getMetrics, { entities: [<span class="wcf-s">"Task"</span>] })</div>
+<div class="wcf-line">  ]</div>
+<div class="wcf-line">});</div></div>
+
+<div class="wcf-pane" id="wcf-02" role="tabpanel" data-file="src/auth/LoginPage.tsx" tabindex="0" hidden><div class="wcf-line"><span class="wcf-k">import</span> { LoginForm } <span class="wcf-k">from</span> <span class="wcf-s">"wasp/client/auth"</span>;</div>
+<div class="wcf-line"> </div>
+<div class="wcf-line"><span class="wcf-k">export default function</span> <span class="wcf-f">LoginPage</span>() {</div>
+<div class="wcf-line">  <span class="wcf-k">return</span> &lt;<span class="wcf-f">LoginForm</span> /&gt;;  <span class="wcf-c">// ready-made, themable, drop-in</span></div>
+<div class="wcf-line">}</div></div>
+
+<div class="wcf-pane" id="wcf-03" role="tabpanel" data-file="schema.prisma" tabindex="0" hidden><div class="wcf-line"><span class="wcf-k">model</span> <span class="wcf-f">Task</span> {</div>
+<div class="wcf-line">  id      <span class="wcf-f">Int</span>     <span class="wcf-c">@id @default(</span><span class="wcf-f">autoincrement</span><span class="wcf-c">())</span></div>
+<div class="wcf-line">  title   <span class="wcf-f">String</span></div>
+<div class="wcf-line">  done    <span class="wcf-f">Boolean</span> <span class="wcf-c">@default(false)</span></div>
+<div class="wcf-line">  user    <span class="wcf-f">User</span>    <span class="wcf-c">@relation(fields: [userId], references: [id])</span></div>
+<div class="wcf-line">  userId  <span class="wcf-f">Int</span></div>
+<div class="wcf-line">}</div></div>
+
+<div class="wcf-pane" id="wcf-04" role="tabpanel" data-file="src/task/operations.ts" tabindex="0" hidden><div class="wcf-line"><span class="wcf-k">import type</span> { <span class="wcf-f">CountTasks</span> } <span class="wcf-k">from</span> <span class="wcf-s">"wasp/server/operations"</span>;</div>
+<div class="wcf-line"> </div>
+<div class="wcf-line"><span class="wcf-k">export const</span> countTasks: <span class="wcf-f">CountTasks</span>&lt;<span class="wcf-k">void</span>, <span class="wcf-f">number</span>&gt; =</div>
+<div class="wcf-line">  <span class="wcf-k">async</span> (_args, ctx) =&gt; {</div>
+<div class="wcf-line">    <span class="wcf-k">return</span> ctx.entities.Task.<span class="wcf-f">count</span>();</div>
+<div class="wcf-line">  };</div></div>
+
+<div class="wcf-pane" id="wcf-05" role="tabpanel" data-file="src/reminders.ts" tabindex="0" hidden><div class="wcf-line"><span class="wcf-k">import type</span> { <span class="wcf-f">SendReminders</span> } <span class="wcf-k">from</span> <span class="wcf-s">"wasp/server/jobs"</span>;</div>
+<div class="wcf-line"> </div>
+<div class="wcf-line"><span class="wcf-k">export const</span> sendReminders: <span class="wcf-f">SendReminders</span>&lt;{ userId?: <span class="wcf-f">number</span> }, <span class="wcf-k">void</span>&gt; =</div>
+<div class="wcf-line">  <span class="wcf-k">async</span> ({ userId }, ctx) =&gt; {</div>
+<div class="wcf-line">    <span class="wcf-k">const</span> tasks = <span class="wcf-k">await</span> ctx.entities.Task.<span class="wcf-f">findMany</span>({</div>
+<div class="wcf-line">      where: { done: <span class="wcf-k">false</span>, ...(userId &amp;&amp; { userId }) }</div>
+<div class="wcf-line">    });</div>
+<div class="wcf-line">    <span class="wcf-c">// ...send a reminder email for each unfinished task</span></div>
+<div class="wcf-line">  };</div></div>
+
+<div class="wcf-pane" id="wcf-06" role="tabpanel" data-file="src/user/operations.ts" tabindex="0" hidden><div class="wcf-line"><span class="wcf-k">import</span> { emailSender } <span class="wcf-k">from</span> <span class="wcf-s">"wasp/server/email"</span>;</div>
+<div class="wcf-line"> </div>
+<div class="wcf-line"><span class="wcf-k">export const</span> sendGreeting: <span class="wcf-f">SendGreeting</span>&lt;{ userId: <span class="wcf-f">number</span> }, <span class="wcf-k">void</span>&gt; =</div>
+<div class="wcf-line">  <span class="wcf-k">async</span> ({ userId }, ctx) =&gt; {</div>
+<div class="wcf-line">    <span class="wcf-k">const</span> user = <span class="wcf-k">await</span> ctx.entities.User.<span class="wcf-f">findUniqueOrThrow</span>({ where: { id: userId } });</div>
+<div class="wcf-line">    <span class="wcf-k">await</span> emailSender.<span class="wcf-f">send</span>({</div>
+<div class="wcf-line">      to: user.email,</div>
+<div class="wcf-line">      subject: <span class="wcf-s">"Welcome to TodoApp 🎉"</span>,</div>
+<div class="wcf-line">      html: <span class="wcf-s">"&lt;h1&gt;Glad you are here.&lt;/h1&gt;"</span></div>
+<div class="wcf-line">    });</div>
+<div class="wcf-line">  };</div></div>
+
+<div class="wcf-pane" id="wcf-07" role="tabpanel" data-file="src/webSocket.ts" tabindex="0" hidden><div class="wcf-line"><span class="wcf-k">import type</span> { <span class="wcf-f">WebSocketDefinition</span> } <span class="wcf-k">from</span> <span class="wcf-s">"wasp/server/webSocket"</span>;</div>
+<div class="wcf-line"> </div>
+<div class="wcf-line"><span class="wcf-k">type</span> <span class="wcf-f">WebSocketFn</span> = <span class="wcf-f">WebSocketDefinition</span>&lt;</div>
+<div class="wcf-line">  { chatMessage: (msg: <span class="wcf-f">string</span>) =&gt; <span class="wcf-k">void</span> },                       <span class="wcf-c">// client → server</span></div>
+<div class="wcf-line">  { chatMessage: (m: { user: <span class="wcf-f">string</span>, text: <span class="wcf-f">string</span> }) =&gt; <span class="wcf-k">void</span> }  <span class="wcf-c">// server → client</span></div>
+<div class="wcf-line">&gt;;</div>
+<div class="wcf-line"> </div>
+<div class="wcf-line"><span class="wcf-k">export const</span> webSocketFn: <span class="wcf-f">WebSocketFn</span> = (io, context) =&gt;</div>
+<div class="wcf-line">  io.<span class="wcf-f">on</span>(<span class="wcf-s">"connection"</span>, (socket) =&gt; {</div>
+<div class="wcf-line">    socket.<span class="wcf-f">on</span>(<span class="wcf-s">"chatMessage"</span>, (text) =&gt; io.<span class="wcf-f">emit</span>(<span class="wcf-s">"chatMessage"</span>, { text }));</div>
+<div class="wcf-line">  });</div></div>
+
+<div class="wcf-pane" id="wcf-08" role="tabpanel" data-file="main.wasp.ts" tabindex="0" hidden><div class="wcf-line">spec: [</div>
+<div class="wcf-line">  <span class="wcf-f">route</span>(<span class="wcf-s">"HomeRoute"</span>, <span class="wcf-s">"/"</span>, <span class="wcf-f">page</span>(HomePage), { prerender: <span class="wcf-k">true</span> }),</div>
+<div class="wcf-line">  <span class="wcf-f">route</span>(<span class="wcf-s">"PricingRoute"</span>, <span class="wcf-s">"/pricing"</span>, <span class="wcf-f">page</span>(PricingPage), { prerender: <span class="wcf-k">true</span> }),</div>
+<div class="wcf-line">  <span class="wcf-f">route</span>(<span class="wcf-s">"DashboardRoute"</span>, <span class="wcf-s">"/dashboard"</span>, <span class="wcf-f">page</span>(DashboardPage))</div>
+<div class="wcf-line">]</div></div>
+
+<div class="wcf-pane" id="wcf-09" role="tabpanel" data-file="shell" tabindex="0" hidden><div class="wcf-line"><span class="wcf-k">$</span> wasp deploy fly launch my-todo-app</div>
+<div class="wcf-line">  → setup · create-db · deploy</div>
+<div class="wcf-line">  ✔ live at https://my-todo-app-client.fly.dev  (2m 14s)</div>
+<div class="wcf-line"> </div>
+<div class="wcf-line"><span class="wcf-k">$</span> wasp deploy fly deploy</div>
+<div class="wcf-line">  ✔ redeployed  (38s)</div></div>
+
+<div class="wcf-pane" id="wcf-10" role="tabpanel" data-file="src/task/TaskList.tsx" tabindex="0" hidden><div class="wcf-line"><span class="wcf-k">import</span> { Link } <span class="wcf-k">from</span> <span class="wcf-s">"wasp/client/router"</span>;</div>
+<div class="wcf-line"> </div>
+<div class="wcf-line">&lt;<span class="wcf-f">Link</span> to=<span class="wcf-s">"/task/:id"</span> params={{ id: task.id }}&gt;...&lt;/<span class="wcf-f">Link</span>&gt;   <span class="wcf-c">// ok</span></div>
+<div class="wcf-line">&lt;<span class="wcf-f">Link</span> to=<span class="wcf-s">"/tsak/:id"</span> params={{ id: task.id }}&gt;...&lt;/<span class="wcf-f">Link</span>&gt;   <span class="wcf-c">// no such route</span></div>
+<div class="wcf-line">&lt;<span class="wcf-f">Link</span> to=<span class="wcf-s">"/task/:id"</span> params={{}}&gt;...&lt;/<span class="wcf-f">Link</span>&gt;                <span class="wcf-c">// missing param "id"</span></div></div>
+
+<div class="wcf-pane" id="wcf-11" role="tabpanel" data-file="src/user/stats.ts" tabindex="0" hidden><div class="wcf-line"><span class="wcf-k">import type</span> { <span class="wcf-f">GetUserStats</span> } <span class="wcf-k">from</span> <span class="wcf-s">"wasp/server/api"</span>;</div>
+<div class="wcf-line"> </div>
+<div class="wcf-line"><span class="wcf-k">export const</span> getUserStats: <span class="wcf-f">GetUserStats</span> = <span class="wcf-k">async</span> (req, res, ctx) =&gt; {</div>
+<div class="wcf-line">  <span class="wcf-k">const</span> numTasks = <span class="wcf-k">await</span> ctx.entities.Task.<span class="wcf-f">count</span>({</div>
+<div class="wcf-line">    where: { userId: ctx.user.id }</div>
+<div class="wcf-line">  });</div>
+<div class="wcf-line">  res.<span class="wcf-f">json</span>({ numTasks });</div>
+<div class="wcf-line">};</div></div>
+
+<div class="wcf-pane" id="wcf-12" role="tabpanel" data-file="shell" tabindex="0" hidden><div class="wcf-line"><span class="wcf-k">$</span> wasp new my-app      <span class="wcf-c"># scaffold a new full-stack app</span></div>
+<div class="wcf-line"><span class="wcf-k">$</span> wasp start           <span class="wcf-c"># run client + server in dev</span></div>
+<div class="wcf-line"><span class="wcf-k">$</span> wasp db migrate-dev  <span class="wcf-c"># run migrations</span></div>
+<div class="wcf-line"><span class="wcf-k">$</span> wasp studio          <span class="wcf-c"># visualize your app's structure</span></div>
+<div class="wcf-line"><span class="wcf-k">$</span> wasp build           <span class="wcf-c"># generate production-ready code</span></div>
+<div class="wcf-line"><span class="wcf-k">$</span> wasp deploy          <span class="wcf-c"># ship it to your provider</span></div></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCRIPT — no dependencies. Wires the feature list to the preview.
+     Call WaspFeatures.init(root) if you inject markup after load.
+     ============================================================ -->
+<script>
+(function (global) {
+  function init(root) {
+    if (!root || root.dataset.wcfReady === "1") return;
+    root.dataset.wcfReady = "1";
+
+    var rows = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+    var fileLabel = root.querySelector("[data-wcf-file]");
+
+    function select(row) {
+      rows.forEach(function (r) {
+        var on = r === row;
+        r.setAttribute("aria-selected", on ? "true" : "false");
+        var pane = root.querySelector("#" + r.getAttribute("aria-controls"));
+        if (pane) {
+          pane.hidden = !on;
+          if (on) {
+            pane.scrollTop = 0;
+            if (fileLabel) fileLabel.textContent = pane.getAttribute("data-file") || "";
+          }
+        }
+      });
+    }
+
+    rows.forEach(function (row, i) {
+      row.addEventListener("click", function () { select(row); });
+      row.addEventListener("keydown", function (e) {
+        var next = e.key === "ArrowDown" ? i + 1 : e.key === "ArrowUp" ? i - 1 : -1;
+        if (next < 0 || next >= rows.length) return;
+        e.preventDefault();
+        rows[next].focus();
+        select(rows[next]);
+      });
+    });
+  }
+
+  function initAll(scope) { (scope || document).querySelectorAll(".wcf").forEach(init); }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () { initAll(); });
+  } else { initAll(); }
+
+  global.WaspFeatures = { init: init, initAll: initAll };
+})(window);
+</script>
+</body>
+</html>

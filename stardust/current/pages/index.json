@@ -1,0 +1,986 @@
+{
+  "_provenance": {
+    "renderedBy": "playwright",
+    "fetchedAt": "2026-08-16T05:15:05.752Z",
+    "waitMode": "medium",
+    "waitMs": 2500,
+    "httpStatus": 200
+  },
+  "slug": "index",
+  "url": "https://wasp.sh/",
+  "renderedBy": "playwright",
+  "fetchedAt": "2026-08-16T05:15:05.752Z",
+  "finalUrl": "https://wasp.sh/",
+  "title": "Wasp",
+  "description": null,
+  "og": {
+    "title": "Wasp",
+    "description": "Develop full-stack web apps without boilerplate.",
+    "image": "https://wasp.sh/assets/images/wasp_twitter_cover-a45e53cb9ebaa2df97e031cd2121bb37.png",
+    "type": "website"
+  },
+  "headings": [
+    {
+      "tag": "h1",
+      "text": "A truly full-stack TypeScript framework that just works."
+    },
+    {
+      "tag": "h3",
+      "text": "01High Level"
+    },
+    {
+      "tag": "h3",
+      "text": "02Batteries: Included"
+    },
+    {
+      "tag": "h3",
+      "text": "03Fully Yours"
+    },
+    {
+      "tag": "h4",
+      "text": "High-Level Spec"
+    },
+    {
+      "tag": "h4",
+      "text": "Full-Stack Auth"
+    },
+    {
+      "tag": "h4",
+      "text": "Data Models"
+    },
+    {
+      "tag": "h4",
+      "text": "Type-Safe RPC"
+    },
+    {
+      "tag": "h4",
+      "text": "Background Jobs"
+    },
+    {
+      "tag": "h4",
+      "text": "Email Sending"
+    },
+    {
+      "tag": "h4",
+      "text": "WebSockets"
+    },
+    {
+      "tag": "h4",
+      "text": "Static Rendering"
+    },
+    {
+      "tag": "h4",
+      "text": "Simple Deployment"
+    },
+    {
+      "tag": "h4",
+      "text": "Type-Safe Links"
+    },
+    {
+      "tag": "h4",
+      "text": "Custom HTTP API"
+    },
+    {
+      "tag": "h4",
+      "text": "Wasp CLI"
+    },
+    {
+      "tag": "h2",
+      "text": "Perfect for AI, by design"
+    },
+    {
+      "tag": "h4",
+      "text": "Todo App"
+    },
+    {
+      "tag": "h4",
+      "text": "CoverLetterGPT"
+    },
+    {
+      "tag": "h4",
+      "text": "Waspello"
+    },
+    {
+      "tag": "h4",
+      "text": "Scribeist"
+    },
+    {
+      "tag": "h4",
+      "text": "Microinfluencer Club"
+    },
+    {
+      "tag": "h4",
+      "text": "Searchcraft"
+    },
+    {
+      "tag": "h2",
+      "text": "The Way of the Wasp"
+    },
+    {
+      "tag": "h4",
+      "text": "\"Onion\" architecture"
+    },
+    {
+      "tag": "h4",
+      "text": "Truly full-stack"
+    },
+    {
+      "tag": "h4",
+      "text": "A powerful, unique full-stack specification layer"
+    },
+    {
+      "tag": "h4",
+      "text": "Greatest > latest"
+    },
+    {
+      "tag": "h4",
+      "text": "Managed experience over DIY"
+    },
+    {
+      "tag": "h2",
+      "text": "Stay up to date 📬"
+    },
+    {
+      "tag": "h2",
+      "text": "🚧 Roadmap 🚧"
+    },
+    {
+      "tag": "h2",
+      "text": "Frequently asked questions"
+    },
+    {
+      "tag": "h6",
+      "text": "Docs"
+    },
+    {
+      "tag": "h6",
+      "text": "Community"
+    },
+    {
+      "tag": "h6",
+      "text": "Company"
+    },
+    {
+      "tag": "h3",
+      "text": "Stay up to date"
+    }
+  ],
+  "body": [
+    "React, Node.js, and Prisma — wired together with auth, jobs, and deployment built in. Ship in a day and own every line.Designed for humans, works beautifully with AI.",
+    "A uniquely powerful config layer serves as a backbone that connects all parts of the stack - frontend, backend, database, and deployment.",
+    "Like Rails and Laravel, focus on your app, not your framework. Auth, jobs, email, deploy and much more built in.",
+    "Open source, no lock-in. No third-party provider or cloud platform dependency. Host anywhere.",
+    "Instead of wiring everything yourself, Wasp gives you a cohesive set of full-stack features so you can focus on what makes your app unique.",
+    "app, auth, route, ...",
+    "username · email · social",
+    "typed · integrated",
+    "typed client ↔ server",
+    "cron · one-off · retry",
+    "provider-agnostic",
+    "typed real-time",
+    "SSG for SEO & LLMs",
+    "one command, any platform",
+    "typed routes & params",
+    "REST · webhooks",
+    "create · build · deploy",
+    "Define your app via a specialized full-stack logic layer in TypeScript, using high-level terms like app, route, page, ... . Think framework config, but taken to a whole new level.",
+    "By making Wasp as easy as possible for humans (opinionated, high-level, batteries-included) we made it the ideal framework for AI too.",
+    "$ ask \"why AI loves Wasp\"",
+    "›Clear best practices and structure keep AI's focus on what is important.",
+    "›Less boilerplate, less code, less space for bugs and security issues.",
+    "›No \"connection\" points where things break - Wasp glues everything together.",
+    "›Less code = smaller context, saving tokens and keeping your AI smart.",
+    "›Batteries included means bigger building blocks, keeping AI on point, codebase tidy, and reducing chance of mistakes.",
+    "$ ask \"how does Wasp keep me in control\"",
+    "›Wasp's spec files give you a unique high-level overview of your app.",
+    "›High-level code keeps you in the loop even when AI does the heavy lifting.",
+    "$ ask \"first-party AI tooling?\"",
+    "›Rule files, skills, and plugins crafted by the Wasp team and shaped by community experience, so you get the most out of your AI.",
+    "›llms.txt built directly from the docs and always up to date.",
+    "You write your app as high-level config in *.wasp.ts files, alongside the usual React, Node, and Prisma code. Wasp compiles it into a full-stack app, ready to deploy anywhere.",
+    "* Treat the generated code like any compiler output. You can look at it, but there is no need to.",
+    "Reference implementations to learn from, fork, or deploy. Each one shows a complete Wasp app. Read the code, run it locally, ship it your way.",
+    "A famous To-Do list app, implemented in TypeScript.",
+    "Generate cover letters based on your CV and the job description. Powered by ChatGPT.",
+    "A Trello-style kanban board with lists, draggable cards, and user auth.",
+    "Live apps the community built and shipped on top of Wasp, running in production today.",
+    "AI writing platform with workspaces for novels, blogs, essays, and notes.",
+    "Connect brands with micro-influencers to run marketing campaigns.",
+    "AI-powered search engine for product teams, with keyword precision plus semantic understanding.",
+    "Real builders, real apps, real conversations. Drop into Discord to ask questions, share what you're working on, or just hang out.",
+    "“Wasp is by far the best for AI coding. The high-level Wasp file keeps me on top of everything.”",
+    "“If you start with Wasp, 80% of the pains of vibe coding are taken care of for you already.”",
+    "Wasp is as game-changing for me as React has been many years back. Its simplicity, and how well [it] captures most full-stack engineering tasks is pure genius. I believe Wasp will become the #1 web technology in just a couple years. It has everything that most web devs are looking for.",
+    "“Everything just works on the first try — minimal intervention needed for anything.”",
+    "“Just using AI would make it harder to sleep at night. With Wasp I feel secure, like I'm not cutting any corners.”",
+    "We aim to make every surface of Wasp a layer of APIs: highest level covers 80% of the use cases, and then you can peel layer after layer as you need more, trading simplicity for flexibility.",
+    "Rely on curated best practice solutions by default, assume more control where/when you need it.",
+    "In Wasp, full-stack is not an after-thought, it is the initial and central point of our design since inception of Wasp as an idea.",
+    "The very way Wasp is designed, with unique specification layer to capture the full-stack logic, and with code generation focused approach in the background, is to allow us to capture all of what a web app is into one solution, to take the definition of \"full-stack\" as far as it goes.",
+    "Wasp stands for Web App SPecification: you describe the full-stack behaviour (specification) of your app in *.wasp.ts files, at the level of your thoughts (route, auth, job, ...), then implement the details in the underlying stack (React, Node, Prisma, ...).",
+    "Every full-stack framework has a way to be configured, but it is usually a mix of file conventions, naming rules, mini-DSLs, and JSON files. Wasp pulls all of that into a single cohesive SDK with the full power of TypeScript, making the specification a first-class citizen, and giving Wasp its superpowers.",
+    "We are not chasing the bleeding edge. We critically track and curate the latest web dev trends to provide you with a deeply integrated and cohesive experience that we stand behind.",
+    "With Wasp, you don't build your framework up, you build it down: you start with everything working out of the box, then take more control where you need it. You start with big building blocks, then replace them with smaller ones and your own logic as needed.",
+    "Be the first to know when we ship new features and updates!",
+    "Work on Wasp never stops: get a glimpse of what is coming next!",
+    "For anything not covered here, join our Discord!"
+  ],
+  "codeBlocks": [
+    "1import { app, page, query, route } from \"@wasp.sh/spec\";\n2import { MainPage } from \"./src/MainPage\" with { type: \"ref\" };\n3import { getTasks } from \"./src/tasks\" with { type: \"ref\" };\n4\n\n5export default app({\n6  wasp: { version: \"^0.24.0\" },\n7  title: \"ToDo App\",\n8  auth: {  // Full-stack auth out-of-the-box.\n9    userEntity: \"User\",\n10    methods: { google: {}, gitHub: {}, email: {} },\n11    onAuthFailedRedirectTo: \"/login\"\n12  },\n13  spec: [\n14    route(\"RootRoute\", \"/\", page(MainPage, {\n15      authRequired: true\n16    })),\n17    query(getTasks, {\n18      entities: [\"Task\"]  // Automatic cache invalidation.\n19    })\n20  ]\n21});",
+    "1import { app, job, page, query, route } from \"@wasp.sh/spec\";\n2\n\n3import { AdminDashboard } from \"./src/admin/Dashboard\" with { type: \"ref\" };\n4import { dailyDigest, getMetrics } from \"./src/admin/ops\" with { type: \"ref\" };\n5import { HomePage } from \"./src/pages/Home\" with { type: \"ref\" };\n6\n\n7export default app({\n8  name: \"todoApp\",\n9  title: \"ToDo App\",\n10  wasp: { version: \"^0.24.0\" },\n11  head: [\"<link rel='icon' href='/favicon.ico' />\"],\n12  auth: {\n13    userEntity: \"User\",\n14    methods: { email: {}, google: {} },\n15    onAuthFailedRedirectTo: \"/login\"\n16  },\n17  spec: [\n18    route(\"HomeRoute\", \"/\", page(HomePage)),\n19    route(\n20      \"AdminRoute\",\n21      \"/admin\",\n22      page(AdminDashboard, { authRequired: true })\n23    ),\n24    query(getMetrics, { entities: [\"Task\", \"User\"] }),\n25    job(dailyDigest, {\n26      executor: \"PgBoss\",\n27      schedule: { cron: \"0 7 * * *\" }\n28    })\n29  ]\n30});"
+  ],
+  "ctas": [
+    {
+      "label": "Docs",
+      "href": "/docs"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/wasp-lang/wasp"
+    },
+    {
+      "label": "Discord",
+      "href": "https://discord.gg/rzdnErX"
+    },
+    {
+      "label": "Get Started",
+      "href": "/docs/quick-start"
+    },
+    {
+      "label": "works beautifully with AI.",
+      "href": "#ai"
+    },
+    {
+      "label": "Get Started",
+      "href": "/docs/quick-start"
+    },
+    {
+      "label": "Documentation",
+      "href": "/docs"
+    },
+    {
+      "label": "$ npm i -g @wasp.sh/wasp-cli@latest",
+      "href": null
+    },
+    {
+      "label": "[main.wasp.ts]",
+      "href": null
+    },
+    {
+      "label": "MainPage.tsx",
+      "href": null
+    },
+    {
+      "label": "tasks.ts",
+      "href": null
+    },
+    {
+      "label": "schema.prisma",
+      "href": null
+    },
+    {
+      "label": "... see all in the docs",
+      "href": "/docs"
+    },
+    {
+      "label": "See how Wasp supercharges vibe coding",
+      "href": "/vibe-coding"
+    },
+    {
+      "label": "TodoAppTs",
+      "href": "https://github.com/wasp-lang/wasp/tree/release/examples/tutorials/TodoAppTs"
+    },
+    {
+      "label": "See the code",
+      "href": "https://github.com/wasp-lang/wasp/tree/release/examples/tutorials/TodoAppTs"
+    },
+    {
+      "label": "coverlettergpt",
+      "href": "https://github.com/vincanger/coverlettergpt"
+    },
+    {
+      "label": "Demo",
+      "href": "https://coverlettergpt.xyz/"
+    },
+    {
+      "label": "See the code",
+      "href": "https://github.com/vincanger/coverlettergpt"
+    },
+    {
+      "label": "waspello",
+      "href": "https://github.com/wasp-lang/wasp/tree/release/examples/waspello"
+    },
+    {
+      "label": "Demo",
+      "href": "https://waspello-demo.netlify.app/"
+    },
+    {
+      "label": "See the code",
+      "href": "https://github.com/wasp-lang/wasp/tree/release/examples/waspello"
+    },
+    {
+      "label": "See all examples",
+      "href": "https://github.com/wasp-lang/wasp/tree/release/examples"
+    },
+    {
+      "label": "ScribeistAI writing platform with workspaces for novels, blogs, essays, and notes.",
+      "href": "https://scribeist.com/"
+    },
+    {
+      "label": "visit site →",
+      "href": "https://scribeist.com/"
+    },
+    {
+      "label": "Microinfluencer ClubConnect brands with micro-influencers to run marketing campaigns.",
+      "href": "https://microinfluencer.club/"
+    },
+    {
+      "label": "visit site →",
+      "href": "https://microinfluencer.club/"
+    },
+    {
+      "label": "SearchcraftAI-powered search engine for product teams, with keyword precision plus semantic understanding.",
+      "href": "https://www.searchcraft.io/"
+    },
+    {
+      "label": "visit site →",
+      "href": "https://www.searchcraft.io/"
+    },
+    {
+      "label": "read the story →",
+      "href": "/blog/2026/07/20/made-with-wasp-searchcraft"
+    },
+    {
+      "label": "Drop into Discord",
+      "href": "https://discord.gg/rzdnErX"
+    },
+    {
+      "label": "“Wasp is by far the best for AI coding. The high-level Wasp file keeps me on top of everything.”Marcel CoetzeeFounder @ Hireveld",
+      "href": "/blog/2026/03/29/hireveld-from-10-stacks-to-production-with-wasp"
+    },
+    {
+      "label": "“If you start with Wasp, 80% of the pains of vibe coding are taken care of for you already.”Kenny RogersDev Rel & AI-First Educator",
+      "href": "https://x.com/KenTheRogers"
+    },
+    {
+      "label": "“Everything just works on the first try — minimal intervention needed for anything.”Hrvoje PavlinovicSenior Engineer @ Memoato",
+      "href": "https://memoato.com/"
+    },
+    {
+      "label": "“Just using AI would make it harder to sleep at night. With Wasp I feel secure, like I'm not cutting any corners.”Robbie ArtressFounder @ PeakMastering",
+      "href": "https://peakmastering.com"
+    },
+    {
+      "label": "Subscribe",
+      "href": null
+    },
+    {
+      "label": "get a glimpse",
+      "href": "https://github.com/orgs/wasp-lang/projects/5"
+    },
+    {
+      "label": "our Discord",
+      "href": "https://discord.gg/rzdnErX"
+    },
+    {
+      "label": "How is Wasp different from Next.js / Nuxt.js / Gatsby?",
+      "href": null
+    },
+    {
+      "label": "How is Wasp different from Ruby on Rails or Django?",
+      "href": null
+    },
+    {
+      "label": "How hard is it to learn Wasp?",
+      "href": null
+    },
+    {
+      "label": "Do you support only React & Node.js currently?",
+      "href": null
+    },
+    {
+      "label": "Getting Started",
+      "href": "/docs"
+    },
+    {
+      "label": "Todo app tutorial",
+      "href": "/docs/tutorial/create"
+    },
+    {
+      "label": "Wasp Spec reference",
+      "href": "/docs/general/spec"
+    },
+    {
+      "label": "Discord",
+      "href": "https://discord.gg/rzdnErX"
+    },
+    {
+      "label": "X / Twitter",
+      "href": "https://x.com/WaspLang"
+    },
+    {
+      "label": "Bluesky",
+      "href": "https://bsky.app/profile/wasp.sh"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/wasp-lang/wasp"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "Careers",
+      "href": "https://wasp-lang.notion.site/Wasp-Careers-59fd1682c80d446f92be5fa65cc17672"
+    },
+    {
+      "label": "Company",
+      "href": "https://wasp-lang.notion.site/Framework-Engineer-at-Wasp-12a18a74854c80de9481c33ebe9cccff?pvs=25#1371801161fd404a8c583cde3611238e"
+    },
+    {
+      "label": "Resources",
+      "href": "/resources"
+    },
+    {
+      "label": "Subscribe",
+      "href": null
+    },
+    {
+      "label": "learn more about our cookie policy",
+      "href": "/privacy-policy"
+    },
+    {
+      "label": "Reject all",
+      "href": null
+    },
+    {
+      "label": "Accept all",
+      "href": null
+    }
+  ],
+  "links": [
+    "https://wasp.sh/",
+    "https://wasp.sh/docs",
+    "https://wasp.sh/blog",
+    "https://github.com/wasp-lang/wasp",
+    "https://discord.gg/rzdnErX",
+    "https://wasp.sh/docs/quick-start",
+    "https://wasp.sh/#ai",
+    "https://wasp.sh/docs/general/spec",
+    "https://wasp.sh/docs/auth/overview",
+    "https://wasp.sh/docs/data-model/entities",
+    "https://wasp.sh/docs/data-model/operations/overview",
+    "https://wasp.sh/docs/advanced/jobs",
+    "https://wasp.sh/docs/advanced/email",
+    "https://wasp.sh/docs/advanced/web-sockets",
+    "https://wasp.sh/docs/advanced/prerendering",
+    "https://wasp.sh/docs/deployment/deployment-methods/overview",
+    "https://wasp.sh/docs/advanced/links",
+    "https://wasp.sh/docs/advanced/apis",
+    "https://wasp.sh/docs/general/cli",
+    "https://wasp.sh/vibe-coding",
+    "https://github.com/wasp-lang/wasp/tree/release/examples/tutorials/TodoAppTs",
+    "https://github.com/vincanger/coverlettergpt",
+    "https://coverlettergpt.xyz/",
+    "https://github.com/wasp-lang/wasp/tree/release/examples/waspello",
+    "https://waspello-demo.netlify.app/",
+    "https://github.com/wasp-lang/wasp/tree/release/examples",
+    "https://scribeist.com/",
+    "https://microinfluencer.club/",
+    "https://www.searchcraft.io/",
+    "https://wasp.sh/blog/2026/07/20/made-with-wasp-searchcraft",
+    "https://wasp.sh/blog/2026/03/29/hireveld-from-10-stacks-to-production-with-wasp",
+    "https://x.com/KenTheRogers",
+    "https://memoato.com/",
+    "https://peakmastering.com/",
+    "https://wasp.sh/#",
+    "https://github.com/orgs/wasp-lang/projects/5",
+    "https://wasp.sh/docs/tutorial/create",
+    "https://x.com/WaspLang",
+    "https://bsky.app/profile/wasp.sh",
+    "https://wasp-lang.notion.site/Wasp-Careers-59fd1682c80d446f92be5fa65cc17672",
+    "https://wasp-lang.notion.site/Framework-Engineer-at-Wasp-12a18a74854c80de9481c33ebe9cccff?pvs=25#1371801161fd404a8c583cde3611238e",
+    "https://wasp.sh/resources",
+    "https://wasp.sh/privacy-policy"
+  ],
+  "media": {
+    "imgs": [
+      {
+        "src": "https://wasp.sh/img/wasp-logo.svg",
+        "alt": "Wasp Logo",
+        "w": 1520,
+        "h": 1520
+      },
+      {
+        "src": "https://wasp.sh/img/lp/examples/scribeist.webp",
+        "alt": "Scribeist",
+        "w": 2560,
+        "h": 1440
+      },
+      {
+        "src": "https://wasp.sh/img/lp/examples/microinfluencers.webp",
+        "alt": "Microinfluencer Club",
+        "w": 2560,
+        "h": 1440
+      },
+      {
+        "src": "https://wasp.sh/img/lp/examples/searchcraft.webp",
+        "alt": "Searchcraft",
+        "w": 2560,
+        "h": 1440
+      },
+      {
+        "src": "https://github.com/Pipboyguy.png",
+        "alt": "Marcel Coetzee",
+        "w": 397,
+        "h": 397
+      },
+      {
+        "src": "https://github.com/kenrogers.png",
+        "alt": "Kenny Rogers",
+        "w": 400,
+        "h": 400
+      },
+      {
+        "src": "https://github.com/hrvojepavlinovic.png",
+        "alt": "Hrvoje Pavlinovic",
+        "w": 460,
+        "h": 460
+      },
+      {
+        "src": "https://pbs.twimg.com/profile_images/1938395157109342208/PtnrrFe7_400x400.jpg",
+        "alt": "Robbie Artress",
+        "w": 400,
+        "h": 400
+      },
+      {
+        "src": "https://wasp.sh/img/lp/wasp-roadmap.webp",
+        "alt": "Roadmap",
+        "w": 1152,
+        "h": 526
+      },
+      {
+        "src": "https://wasp.sh/img/lp/yc-logo-rounded.webp",
+        "alt": "YC",
+        "w": 650,
+        "h": 144
+      },
+      {
+        "src": "https://wasp.sh/img/lp/wasp-logo.webp",
+        "alt": "Wasp Logo",
+        "w": 294,
+        "h": 294
+      }
+    ],
+    "allImgCount": 11,
+    "cssBackgrounds": [],
+    "modals": [],
+    "videos": [],
+    "iframes": []
+  },
+  "customProps": {
+    "--ifm-color-scheme": "light",
+    "--ifm-dark-value": "10%",
+    "--ifm-darker-value": "15%",
+    "--ifm-darkest-value": "30%",
+    "--ifm-light-value": "15%",
+    "--ifm-lighter-value": "30%",
+    "--ifm-lightest-value": "50%",
+    "--ifm-contrast-background-value": "90%",
+    "--ifm-contrast-foreground-value": "70%",
+    "--ifm-contrast-background-dark-value": "70%",
+    "--ifm-contrast-foreground-dark-value": "90%",
+    "--ifm-color-primary": "#bf9900",
+    "--ifm-color-secondary": "#ebedf0",
+    "--ifm-color-success": "#00a400",
+    "--ifm-color-info": "#54c7ec",
+    "--ifm-color-warning": "#ffba00",
+    "--ifm-color-danger": "#fa383e",
+    "--ifm-color-primary-dark": "#8a6f04",
+    "--ifm-color-primary-darker": "#1fa588",
+    "--ifm-color-primary-darkest": "#1a8870",
+    "--ifm-color-primary-light": "#46cbae",
+    "--ifm-color-primary-lighter": "#66d4bd",
+    "--ifm-color-primary-lightest": "#92e0d0",
+    "--ifm-color-primary-contrast-background": "#ebf2fc",
+    "--ifm-color-primary-contrast-foreground": "#102445",
+    "--ifm-color-secondary-dark": "#d4d5d8",
+    "--ifm-color-secondary-darker": "#c8c9cc",
+    "--ifm-color-secondary-darkest": "#a4a6a8",
+    "--ifm-color-secondary-light": "#eef0f2",
+    "--ifm-color-secondary-lighter": "#f1f2f5",
+    "--ifm-color-secondary-lightest": "#f5f6f8",
+    "--ifm-color-secondary-contrast-background": "#fdfdfe",
+    "--ifm-color-secondary-contrast-foreground": "#474748",
+    "--ifm-color-success-dark": "#009400",
+    "--ifm-color-success-darker": "#008b00",
+    "--ifm-color-success-darkest": "#007300",
+    "--ifm-color-success-light": "#26b226",
+    "--ifm-color-success-lighter": "#4dbf4d",
+    "--ifm-color-success-lightest": "#80d280",
+    "--ifm-color-success-contrast-background": "#e6f6e6",
+    "--ifm-color-success-contrast-foreground": "#003100",
+    "--ifm-color-info-dark": "#4cb3d4",
+    "--ifm-color-info-darker": "#47a9c9",
+    "--ifm-color-info-darkest": "#3b8ba5",
+    "--ifm-color-info-light": "#6ecfef",
+    "--ifm-color-info-lighter": "#87d8f2",
+    "--ifm-color-info-lightest": "#aae3f6",
+    "--ifm-color-info-contrast-background": "#eef9fd",
+    "--ifm-color-info-contrast-foreground": "#193c47",
+    "--ifm-color-warning-dark": "#e6a700",
+    "--ifm-color-warning-darker": "#d99e00",
+    "--ifm-color-warning-darkest": "#b38200",
+    "--ifm-color-warning-light": "#ffc426",
+    "--ifm-color-warning-lighter": "#ffcf4d",
+    "--ifm-color-warning-lightest": "#ffdd80",
+    "--ifm-color-warning-contrast-background": "#fff8e6",
+    "--ifm-color-warning-contrast-foreground": "#4d3800",
+    "--ifm-color-danger-dark": "#e13238",
+    "--ifm-color-danger-darker": "#d53035",
+    "--ifm-color-danger-darkest": "#af272b",
+    "--ifm-color-danger-light": "#fb565b",
+    "--ifm-color-danger-lighter": "#fb7478",
+    "--ifm-color-danger-lightest": "#fd9c9f",
+    "--ifm-color-danger-contrast-background": "#ffebec",
+    "--ifm-color-danger-contrast-foreground": "#4b1113",
+    "--ifm-color-white": "#fff",
+    "--ifm-color-black": "#000",
+    "--ifm-color-gray-0": "#fff",
+    "--ifm-color-gray-100": "#f5f6f7",
+    "--ifm-color-gray-200": "#ebedf0",
+    "--ifm-color-gray-300": "#dadde1",
+    "--ifm-color-gray-400": "#ccd0d5",
+    "--ifm-color-gray-500": "#bec3c9",
+    "--ifm-color-gray-600": "#8d949e",
+    "--ifm-color-gray-700": "#606770",
+    "--ifm-color-gray-800": "#444950",
+    "--ifm-color-gray-900": "#1c1e21",
+    "--ifm-color-gray-1000": "#000",
+    "--ifm-color-emphasis-0": "#fff",
+    "--ifm-color-emphasis-100": "#f5f6f7",
+    "--ifm-color-emphasis-200": "#ebedf0",
+    "--ifm-color-emphasis-300": "#dadde1",
+    "--ifm-color-emphasis-400": "#ccd0d5",
+    "--ifm-color-emphasis-500": "#bec3c9",
+    "--ifm-color-emphasis-600": "#8d949e",
+    "--ifm-color-emphasis-700": "#606770",
+    "--ifm-color-emphasis-800": "#444950",
+    "--ifm-color-emphasis-900": "#1c1e21",
+    "--ifm-color-emphasis-1000": "#000",
+    "--ifm-color-content": "#1c1e21",
+    "--ifm-color-content-inverse": "#fff",
+    "--ifm-color-content-secondary": "#525860",
+    "--ifm-background-color": "#f7f5f0",
+    "--ifm-background-surface-color": "#fff",
+    "--ifm-global-border-width": "1px",
+    "--ifm-global-radius": "0",
+    "--ifm-hover-overlay": "rgba(0,0,0,.05)",
+    "--ifm-font-color-base": "#1c1e21",
+    "--ifm-font-color-base-inverse": "#fff",
+    "--ifm-font-color-secondary": "#525860",
+    "--ifm-font-family-base": "\"IBM Plex Sans\",sans-serif",
+    "--ifm-font-family-monospace": "SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace",
+    "--ifm-font-size-base": "100%",
+    "--ifm-font-weight-light": "300",
+    "--ifm-font-weight-normal": "400",
+    "--ifm-font-weight-semibold": "500",
+    "--ifm-font-weight-bold": "700",
+    "--ifm-font-weight-base": "400",
+    "--ifm-line-height-base": "1.65",
+    "--ifm-global-spacing": "1rem",
+    "--ifm-spacing-vertical": "1rem",
+    "--ifm-spacing-horizontal": "1rem",
+    "--ifm-transition-fast": "0s",
+    "--ifm-transition-slow": "0s",
+    "--ifm-transition-timing-default": "cubic-bezier(.08,.52,.52,1)",
+    "--ifm-global-shadow-lw": "none",
+    "--ifm-global-shadow-md": "0 5px 40px rgba(0,0,0,.2)",
+    "--ifm-global-shadow-tl": "0 12px 28px 0 rgba(0,0,0,.2),0 2px 4px 0 rgba(0,0,0,.1)",
+    "--ifm-z-index-dropdown": "100",
+    "--ifm-z-index-fixed": "200",
+    "--ifm-z-index-overlay": "400",
+    "--ifm-container-width": "1140px",
+    "--ifm-container-width-xl": "1280px",
+    "--ifm-code-background": "#f6f7f8",
+    "--ifm-code-border-radius": "3px",
+    "--ifm-code-font-size": "100%",
+    "--ifm-code-padding-horizontal": ".1rem",
+    "--ifm-code-padding-vertical": ".1rem",
+    "--ifm-pre-background": "#f6f7f8",
+    "--ifm-pre-border-radius": "3px",
+    "--ifm-pre-color": "inherit",
+    "--ifm-pre-line-height": "1.45",
+    "--ifm-pre-padding": "1rem",
+    "--ifm-heading-color": "inherit",
+    "--ifm-heading-margin-top": "0",
+    "--ifm-heading-margin-bottom": "1rem",
+    "--ifm-heading-font-family": "\"IBM Plex Mono\",monospace",
+    "--ifm-heading-font-weight": "600",
+    "--ifm-heading-line-height": "1.25",
+    "--ifm-h1-font-size": "2rem",
+    "--ifm-h2-font-size": "2rem",
+    "--ifm-h3-font-size": "1.3rem",
+    "--ifm-h4-font-size": "1rem",
+    "--ifm-h5-font-size": ".875rem",
+    "--ifm-h6-font-size": ".85rem",
+    "--ifm-image-alignment-padding": "1.25rem",
+    "--ifm-leading-desktop": "1.25",
+    "--ifm-leading": "calc(1.25*1rem)",
+    "--ifm-list-left-padding": "2rem",
+    "--ifm-list-margin": "1rem",
+    "--ifm-list-item-margin": ".25rem",
+    "--ifm-list-paragraph-margin": "1rem",
+    "--ifm-table-cell-padding": ".75rem",
+    "--ifm-table-background": "transparent",
+    "--ifm-table-stripe-background": "rgba(0,0,0,.03)",
+    "--ifm-table-border-width": "1px",
+    "--ifm-table-border-color": "#dadde1",
+    "--ifm-table-head-background": "inherit",
+    "--ifm-table-head-color": "inherit",
+    "--ifm-table-head-font-weight": "700",
+    "--ifm-table-cell-color": "inherit",
+    "--ifm-link-color": "#bf9900",
+    "--ifm-link-decoration": "none",
+    "--ifm-link-hover-color": "#bf9900",
+    "--ifm-link-hover-decoration": "underline",
+    "--ifm-paragraph-margin-bottom": "calc(1.25*1rem)",
+    "--ifm-blockquote-font-size": "100%",
+    "--ifm-blockquote-border-left-width": "2px",
+    "--ifm-blockquote-padding-horizontal": "1rem",
+    "--ifm-blockquote-padding-vertical": "0",
+    "--ifm-blockquote-shadow": "none",
+    "--ifm-blockquote-color": "#444950",
+    "--ifm-blockquote-border-color": "#dadde1",
+    "--ifm-hr-background-color": "#bec3c9",
+    "--ifm-hr-height": "1px",
+    "--ifm-hr-margin-vertical": "1.5rem",
+    "--ifm-scrollbar-size": "7px",
+    "--ifm-scrollbar-track-background-color": "#f1f1f1",
+    "--ifm-scrollbar-thumb-background-color": "silver",
+    "--ifm-scrollbar-thumb-hover-background-color": "#a7a7a7",
+    "--ifm-alert-background-color": "inherit",
+    "--ifm-alert-border-color": "inherit",
+    "--ifm-alert-border-radius": "0",
+    "--ifm-alert-border-width": "0px",
+    "--ifm-alert-border-left-width": "5px",
+    "--ifm-alert-color": "#1c1e21",
+    "--ifm-alert-padding-horizontal": "1rem",
+    "--ifm-alert-padding-vertical": "1rem",
+    "--ifm-alert-shadow": "none",
+    "--ifm-avatar-intro-margin": "1rem",
+    "--ifm-avatar-intro-alignment": "inherit",
+    "--ifm-avatar-photo-size": "3rem",
+    "--ifm-badge-background-color": "inherit",
+    "--ifm-badge-border-color": "inherit",
+    "--ifm-badge-border-radius": "0",
+    "--ifm-badge-border-width": "1px",
+    "--ifm-badge-color": "#fff",
+    "--ifm-badge-padding-horizontal": "calc(1rem*.5)",
+    "--ifm-badge-padding-vertical": "calc(1rem*.25)",
+    "--ifm-breadcrumb-border-radius": "1.5rem",
+    "--ifm-breadcrumb-spacing": ".5rem",
+    "--ifm-breadcrumb-color-active": "#bf9900",
+    "--ifm-breadcrumb-item-background-active": "rgba(0,0,0,.05)",
+    "--ifm-breadcrumb-padding-horizontal": ".8rem",
+    "--ifm-breadcrumb-padding-vertical": ".4rem",
+    "--ifm-breadcrumb-size-multiplier": "1",
+    "--ifm-breadcrumb-separator": "url(\"data:image/svg+xml;utf8,<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" x=\\\"0px\\\" y=\\\"0px\\\" viewBox=\\\"0 0 256 256\\\"><g><g><polygon points=\\\"79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128\\\"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>\")",
+    "--ifm-breadcrumb-separator-filter": "none",
+    "--ifm-breadcrumb-separator-size": ".5rem",
+    "--ifm-breadcrumb-separator-size-multiplier": "1.25",
+    "--ifm-button-background-color": "#f7f5f0",
+    "--ifm-button-border-color": "#f7f5f0",
+    "--ifm-button-border-width": "1px",
+    "--ifm-button-color": "#fff",
+    "--ifm-button-font-weight": "700",
+    "--ifm-button-padding-horizontal": "1.5rem",
+    "--ifm-button-padding-vertical": ".375rem",
+    "--ifm-button-size-multiplier": "1",
+    "--ifm-button-transition-duration": "0s",
+    "--ifm-button-border-radius": "3px",
+    "--ifm-button-group-spacing": "2px",
+    "--ifm-card-background-color": "#fff",
+    "--ifm-card-border-radius": "calc(0*2)",
+    "--ifm-card-horizontal-spacing": "1rem",
+    "--ifm-card-vertical-spacing": "1rem",
+    "--ifm-toc-border-color": "#bbb",
+    "--ifm-toc-link-color": "#525860",
+    "--ifm-toc-padding-vertical": ".5rem",
+    "--ifm-toc-padding-horizontal": ".5rem",
+    "--ifm-dropdown-background-color": "#fff",
+    "--ifm-dropdown-font-weight": "500",
+    "--ifm-dropdown-link-color": "#1c1e21",
+    "--ifm-dropdown-hover-background-color": "rgba(0,0,0,.05)",
+    "--ifm-footer-background-color": "#f5f6f7",
+    "--ifm-footer-color": "inherit",
+    "--ifm-footer-link-color": "#606770",
+    "--ifm-footer-link-hover-color": "#bf9900",
+    "--ifm-footer-link-horizontal-spacing": ".5rem",
+    "--ifm-footer-padding-horizontal": "calc(1rem*2)",
+    "--ifm-footer-padding-vertical": "calc(1rem*2)",
+    "--ifm-footer-title-color": "inherit",
+    "--ifm-footer-logo-max-width": "min(30rem,90vw)",
+    "--ifm-hero-background-color": "#fff",
+    "--ifm-hero-text-color": "#444950",
+    "--ifm-menu-color": "#444950",
+    "--ifm-menu-color-active": "#bf9900",
+    "--ifm-menu-color-background-active": "rgba(0,0,0,.05)",
+    "--ifm-menu-color-background-hover": "rgba(0,0,0,.05)",
+    "--ifm-menu-link-padding-horizontal": ".75rem",
+    "--ifm-menu-link-padding-vertical": ".375rem",
+    "--ifm-menu-link-sublist-icon": "url(\"data:image/svg+xml;utf8,<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" width=\\\"16px\\\" height=\\\"16px\\\" viewBox=\\\"0 0 24 24\\\"><path fill=\\\"rgba(0,0,0,0.5)\\\" d=\\\"M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z\\\"></path></svg>\")",
+    "--ifm-menu-link-sublist-icon-filter": "none",
+    "--ifm-navbar-background-color": "#f7f5f0",
+    "--ifm-navbar-height": "3.75rem",
+    "--ifm-navbar-item-padding-horizontal": ".75rem",
+    "--ifm-navbar-item-padding-vertical": ".25rem",
+    "--ifm-navbar-link-color": "#1c1e21",
+    "--ifm-navbar-link-hover-color": "#bf9900",
+    "--ifm-navbar-link-active-color": "#bf9900",
+    "--ifm-navbar-padding-horizontal": "1rem",
+    "--ifm-navbar-padding-vertical": "calc(1rem*.5)",
+    "--ifm-navbar-shadow": "none",
+    "--ifm-navbar-search-input-background-color": "#ebedf0",
+    "--ifm-navbar-search-input-color": "#444950",
+    "--ifm-navbar-search-input-placeholder-color": "#bec3c9",
+    "--ifm-navbar-search-input-icon": "url(\"data:image/svg+xml;utf8,<svg fill=\\\"currentColor\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 16 16\\\" height=\\\"16px\\\" width=\\\"16px\\\"><path d=\\\"M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z\\\" /></svg>\")",
+    "--ifm-navbar-sidebar-width": "83vw",
+    "--ifm-pagination-border-radius": "0",
+    "--ifm-pagination-color-active": "#bf9900",
+    "--ifm-pagination-font-size": "1rem",
+    "--ifm-pagination-item-active-background": "rgba(0,0,0,.05)",
+    "--ifm-pagination-page-spacing": ".2em",
+    "--ifm-pagination-padding-horizontal": "calc(1rem*1)",
+    "--ifm-pagination-padding-vertical": "calc(1rem*.25)",
+    "--ifm-pagination-nav-border-radius": "0",
+    "--ifm-pagination-nav-color-hover": "#bf9900",
+    "--ifm-pills-color-active": "#bf9900",
+    "--ifm-pills-color-background-active": "rgba(0,0,0,.05)",
+    "--ifm-pills-spacing": ".125rem",
+    "--ifm-tabs-color": "#525860",
+    "--ifm-tabs-color-active": "#bf9900",
+    "--ifm-tabs-color-active-border": "#bf9900",
+    "--ifm-tabs-padding-horizontal": "1rem",
+    "--ifm-tabs-padding-vertical": "1rem",
+    "--docusaurus-progress-bar-color": "#bf9900",
+    "--docusaurus-announcement-bar-height": "30px",
+    "--docusaurus-blog-social-icon-size": "1rem",
+    "--docusaurus-collapse-button-bg": "transparent",
+    "--docusaurus-collapse-button-bg-hover": "rgba(0,0,0,.1)",
+    "--doc-sidebar-width": "300px",
+    "--doc-sidebar-hidden-width": "30px",
+    "--docusaurus-tag-list-border": "#dadde1",
+    "--docsearch-primary-color": "#bf9900",
+    "--docsearch-soft-primary-color": "rgba(0,61,255,.1)",
+    "--docsearch-subtle-color": "#d6d6e7",
+    "--docsearch-text-color": "#1c1e21",
+    "--docsearch-error-color": "#ef5350",
+    "--docsearch-success-color": "#e8f5e9",
+    "--docsearch-secondary-text-color": "#5a5e9a",
+    "--docsearch-background-color": "#f5f5fa",
+    "--docsearch-spacing": "12px",
+    "--docsearch-icon-stroke-width": "1.4",
+    "--docsearch-focus-color": "#005fcc",
+    "--docsearch-highlight-color": "#003dff",
+    "--docsearch-muted-color": "#9698c3",
+    "--docsearch-muted-color-darker": "rgba(120,122,165,.25)",
+    "--docsearch-icon-color": "#5a5e9a",
+    "--docsearch-container-background": "rgba(101,108,133,.8)",
+    "--docsearch-logo-color": "#003dff",
+    "--docsearch-border-radius": "4px",
+    "--docsearch-search-button-background": "#fff",
+    "--docsearch-search-button-text-color": "#5a5e9a",
+    "--docsearch-modal-width": "800px",
+    "--docsearch-modal-height": "600px",
+    "--docsearch-modal-variable-height": "60dvh",
+    "--docsearch-modal-background": "#f5f6f7",
+    "--docsearch-modal-shadow": "rgba(0,0,0,.2) 0px 12px 28px 0px,rgba(0,0,0,.1) 0px 2px 4px 0px,rgba(255,255,255,.05) 0px 0px 0px 1px inset",
+    "--docsearch-searchbox-height": "56px",
+    "--docsearch-searchbox-initial-height": "56px",
+    "--docsearch-searchbox-background": "rgba(255,255,255,.65)",
+    "--docsearch-searchbox-focus-background": "rgba(255,255,255,.65)",
+    "--docsearch-actions-width": "99px",
+    "--docsearch-actions-height": "44px",
+    "--docsearch-hit-height": "56px",
+    "--docsearch-hit-color": "#444950",
+    "--docsearch-hit-highlight-color": "rgba(0,61,255,.1)",
+    "--docsearch-hit-background": "#fff",
+    "--docsearch-key-background": "#f5f5fa",
+    "--docsearch-key-color": "#5a5e9a",
+    "--docsearch-key-pressed-shadow": "inset 0 2px 4px rgba(120,122,165,.25)",
+    "--docsearch-footer-height": "52px",
+    "--docsearch-footer-background": "rgba(255,255,255,.65)",
+    "--docsearch-footer-shadow": "0 -1px 0 0 #e0e3e8,0 -3px 6px 0 rgba(69,98,155,.12)",
+    "--fav-out-dur": ".16s",
+    "--del-dur": ".15s",
+    "--ease-smooth": "cubic-bezier(.25,.8,.4,1)",
+    "--ease-fast": "cubic-bezier(.45,.15,.6,.9)",
+    "--shadow-pop": "0 4px 12px rgba(0,0,0,.06)",
+    "--shimmer-bg": "linear-gradient(90deg,#e0e3e8 0%,#9698c3/**/20%,#9698c3/**/60%,#e0e3e8 95%)",
+    "--docsearch-dropdown-menu-background": "#fff",
+    "--docsearch-dropdown-menu-item-hover-background": "#f5f6f7",
+    "--wasp-y": "#f5c842",
+    "--wasp-sl": "\"#f8d670\"",
+    "--wasp-ql": "\"#fce59e\"",
+    "--wasp-yl": "#fff3cc",
+    "--wasp-yd": "#d4a930",
+    "--wasp-p": "#7b42f5",
+    "--wasp-psl": "#a172f8",
+    "--wasp-pql": "#c2a2fb",
+    "--wasp-pl": "#e0ccff",
+    "--wasp-pd": "#5a30d4",
+    "--wasp-code-bg-pd": "#292435",
+    "--wasp-k": "#111",
+    "--wasp-g7": "#333",
+    "--wasp-g6": "#555",
+    "--wasp-g5": "#777",
+    "--wasp-g4": "#999",
+    "--wasp-g3": "#bbb",
+    "--wasp-g2": "#ddd",
+    "--wasp-g1": "#eee",
+    "--wasp-w": "#fafafa",
+    "--wasp-bg": "#f7f5f0",
+    "--wasp-code-bg": "#f0ede6",
+    "--wasp-handle": "7px",
+    "--lh": "1.6",
+    "--custom-background-color": "#f7f5f0",
+    "--custom-background-color-diff": "#f4f4f4",
+    "--custom-shadow-lw": "0 3px 5px 0px rgba(0,0,0,.1)",
+    "--custom-border-radius": "3px",
+    "--custom-border-radius-md": "6px",
+    "--custom-discord-color": "#8a9cff",
+    "--custom-wasp-color": "#f5c842",
+    "--custom-blog-list-background-color": "#f5f5f5",
+    "--custom-blog-card-timestamp-color": "#737373",
+    "--custom-blog-card-background-color": "white",
+    "--ifm-code-background-dark": "#292d3e",
+    "--ifm-col-spacing-vertical": ".5rem",
+    "--docusaurus-highlighted-code-line-bg": "rgba(245,200,66,.15)",
+    "--sidebar-item-level-1-color": "#bf9900",
+    "--sidebar-item-level-1-spacing": "1em",
+    "--auth-pills-color": "#333",
+    "--auth-pills-email": "#e0f2fe",
+    "--auth-pills-github": "#f1f5f9",
+    "--auth-pills-google": "#ecfccb",
+    "--auth-pills-username-and-pass": "#fce7f3",
+    "--auth-pills-discord": "#d3d6f2",
+    "--auth-pills-keycloak": "#d0ebf5",
+    "--auth-pills-slack": "#8fb57d"
+  },
+  "_signals": {
+    "filteredInterstitials": 0,
+    "distinctHeadings": 36,
+    "mainTextLen": 17741,
+    "realImageCount": 11,
+    "trackingOnlyMedia": false,
+    "spaShellSuspect": false,
+    "screenshotMode": "fullPage"
+  },
+  "screenshot": "assets/screenshots/index.png"
+}

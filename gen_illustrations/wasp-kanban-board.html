@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wasp kanban board</title>
+
+<!-- ============================================================
+     STYLES — everything scoped under .wkb, no global resets,
+     no dependencies. Safe to paste into an existing stylesheet.
+     Palette / radii / type-scale follow the same design-system
+     conventions as the wasp-code-terminal (.wct) component.
+     ============================================================ -->
+<style>
+.wkb {
+  --wkb-surface: #101013;
+  --wkb-surface-alt: #17181c;
+  --wkb-card: #17181c;
+  --wkb-card-hover: #1c1d22;
+  --wkb-border: rgba(255, 255, 255, 0.08);
+  --wkb-border-strong: rgba(255, 255, 255, 0.14);
+  --wkb-text: #ededee;
+  --wkb-text-dim: #9a9aa2;
+  --wkb-text-faint: #6b6b74;
+  --wkb-radius: 10px;
+  --wkb-radius-sm: 6px;
+  --wkb-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+
+  font-family: var(--wkb-sans);
+  color: var(--wkb-text);
+  background: var(--wkb-surface);
+  border: 1px solid var(--wkb-border);
+  border-radius: var(--wkb-radius);
+  padding: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wkb-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.wkb-col-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.wkb-col-header h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--wkb-text);
+}
+.wkb-count {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--wkb-text-faint);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 1px 8px;
+}
+.wkb-more {
+  margin-left: auto;
+  border: none;
+  background: none;
+  color: var(--wkb-text-faint);
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.wkb-more:hover { color: var(--wkb-text-dim); }
+
+.wkb-col-desc {
+  margin: 0 0 16px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--wkb-text-faint);
+}
+
+.wkb-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wkb-card {
+  background: var(--wkb-card);
+  border: 1px solid var(--wkb-border);
+  border-radius: var(--wkb-radius);
+  padding: 14px 16px;
+  cursor: default;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+.wkb-card:hover {
+  background: var(--wkb-card-hover);
+  border-color: var(--wkb-border-strong);
+}
+
+.wkb-card-id {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--wkb-text-faint);
+  margin-bottom: 8px;
+}
+
+.wkb-status {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1.6px solid var(--wkb-status-color, #22c55e);
+  flex: none;
+  position: relative;
+}
+.wkb-status::after {
+  content: "";
+  position: absolute;
+  inset: 3.5px;
+  border-radius: 50%;
+  background: var(--wkb-status-color, #22c55e);
+}
+.wkb-status.wkb-status-outline::after { display: none; }
+.wkb-status.wkb-status-half::after { inset: 5px; }
+
+.wkb-card-title {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--wkb-text);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.wkb-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.wkb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 4px 9px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.wkb-badge-epic {
+  color: #d8b4fe;
+  background: rgba(168, 85, 247, 0.10);
+  border-color: rgba(168, 85, 247, 0.35);
+}
+.wkb-badge-dx {
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.10);
+  border-color: rgba(59, 130, 246, 0.35);
+}
+.wkb-badge-restructuring {
+  color: #4ade80;
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.35);
+}
+.wkb-badge-experiment {
+  color: #a5b4fc;
+  background: rgba(99, 102, 241, 0.14);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+.wkb-badge-version {
+  color: var(--wkb-text-dim);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--wkb-border-strong);
+}
+.wkb-badge-version svg { width: 11px; height: 11px; }
+
+.wkb :focus-visible { outline: 2px solid #eab308; outline-offset: 2px; }
+</style>
+</head>
+<body style="margin:0;padding:32px;background:#f5f5f4;font-family:system-ui,sans-serif">
+
+<!-- ============================================================
+     MARKUP — self-contained. Copy from <div class="wkb"> to its
+     closing tag. Add / remove .wkb-col blocks to change columns.
+     ============================================================ -->
+<div class="wkb">
+  <div class="wkb-columns">
+
+    <div class="wkb-col">
+      <div class="wkb-col-header">
+        <span class="wkb-status wkb-status-outline" style="--wkb-status-color:#6b6b74"></span>
+        <h3>Ideas</h3>
+        <span class="wkb-count">5</span>
+        <button type="button" class="wkb-more" aria-label="Column options">•••</button>
+      </div>
+      <p class="wkb-col-desc">In consideration, not yet clear when/if we will work on it.</p>
+
+      <div class="wkb-cards">
+        <div class="wkb-card">
+          <div class="wkb-card-id">
+            <span class="wkb-status" style="--wkb-status-color:#22c55e"></span>
+            wasp #2892
+          </div>
+          <div class="wkb-card-title">Wasp Studio / Dev Toolbar</div>
+          <div class="wkb-badges">
+            <span class="wkb-badge wkb-badge-epic">Epic</span>
+          </div>
+        </div>
+
+        <div class="wkb-card">
+          <div class="wkb-card-id">
+            <span class="wkb-status" style="--wkb-status-color:#22c55e"></span>
+            wasp #2893
+          </div>
+          <div class="wkb-card-title">Modular Wasp (Auth, Db, …)</div>
+          <div class="wkb-badges">
+            <span class="wkb-badge wkb-badge-epic">Epic</span>
+            <span class="wkb-badge wkb-badge-experiment">experiment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wkb-col">
+      <div class="wkb-col-header">
+        <span class="wkb-status wkb-status-half" style="--wkb-status-color:#3b82f6"></span>
+        <h3>Planned</h3>
+        <span class="wkb-count">22</span>
+        <button type="button" class="wkb-more" aria-label="Column options">•••</button>
+      </div>
+      <p class="wkb-col-desc">Planned to work on but need more refinement. Sorted by priority.</p>
+
+      <div class="wkb-cards">
+        <div class="wkb-card">
+          <div class="wkb-card-id">
+            <span class="wkb-status" style="--wkb-status-color:#22c55e"></span>
+            wasp #2870
+          </div>
+          <div class="wkb-card-title">Make Wasp &quot;right&quot;</div>
+          <div class="wkb-badges">
+            <span class="wkb-badge wkb-badge-epic">Epic</span>
+            <span class="wkb-badge wkb-badge-dx">dx</span>
+            <span class="wkb-badge wkb-badge-restructuring">restructuring</span>
+            <span class="wkb-badge wkb-badge-version">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              1.0
+            </span>
+          </div>
+        </div>
+
+        <div class="wkb-card">
+          <div class="wkb-card-id">
+            <span class="wkb-status" style="--wkb-status-color:#22c55e"></span>
+            wasp #2871
+          </div>
+          <div class="wkb-card-title">Wasp TS spec (main.wasp.ts)</div>
+          <div class="wkb-badges">
+            <span class="wkb-badge wkb-badge-epic">Epic</span>
+            <span class="wkb-badge wkb-badge-version">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1v14M1 8h14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              1.0
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
