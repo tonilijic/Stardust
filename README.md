@@ -61,6 +61,7 @@ Overrides are mentioned in the [Override.md](plans/Override.md) file. (I've prob
 
 Aside from running stardust on other pages, I'd probably focus more on the nitty-gritty details that are primarily gut/feeling driven:
 
+- **urgent:** just noticed that CTAs in nav header on mobile are aligned to left instead of space-between
 - improving skills for generating html/svg rich visuals that would be fully interactive ([current illustrations](gen_illustrations/) are one-shotted and are not included)
 - subtle transitions and transformations, just to give a hint of a "light and joyful" framework
 - to ensure brand consistency, card thumbnails, when populated with external images, could benefit from a simple shader overlay, e.g. [halftone cmyk filter from paper](https://shaders.paper.design/halftone-cmyk)
