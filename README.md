@@ -2,7 +2,8 @@
 
 ## Experiment Goal
 
-In the limited time (roughly 3-4 hours), use the [stardust.style](https://stardust.style) to redesign the homepage of the selected site: [https://wasp.sh](https://wasp.sh). Check its output, inject corrections, loop until satisfied or time's up, and deploy it in a test environment.
+In the limited time (roughly 3-4 hours), use the [stardust.style](https://stardust.style) to redesign the homepage of the selected site: [https://wasp.sh](https://wasp.sh). Check its output, inject corrections, loop until satisfied or time's up, and deploy it in a test environment. Steps are documented in [Pipeline.md](plans/Pipeline.md)
+
 
 "Final" version of the experiment can be previewed [here](https://stardust-gray.vercel.app)
 
