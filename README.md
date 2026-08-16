@@ -18,11 +18,11 @@ In the limited time, (roughly 3-4 hours) use the [stardust.style](https://stardu
 
 Full screenshots can be found under [screenshots](assets/screenshots/)
 
-![Direction 1 (The corrected spec — brand-faithful, ships the declared system literally)](assets/thumbnails/Direction -1@2x.jpg)
+![Direction 1 (The corrected spec — brand-faithful, ships the declared system literally)](assets/thumbnails/Direction-1@2x.jpg)
 
-![Direction 2 (The schematic — the blueprint/circuit-diagram trait pushed as the page's structure)](assets/thumbnails/Direction -2@2x.jpg)
+![Direction 2 (The schematic — the blueprint/circuit-diagram trait pushed as the page's structure)](assets/thumbnails/Direction-2@2x.jpg)
 
-![Direction 3 (The spec document — the numbered-eyebrow trait pushed into a running RFC structure)](assets/thumbnails/Direction -3@2x.jpg)
+![Direction 3 (The spec document — the numbered-eyebrow trait pushed into a running RFC structure)](assets/thumbnails/Direction-3@2x.jpg)
 
 ### Quick observations on all prototypes
 
@@ -61,11 +61,10 @@ All overrides are mentioned in [Override.md](plans/Override.md) file.
 
 Aside from running stardust on other pages I'd probably focus more on nitty-gritty details that are primarily gut/feeling driven:
 
-- improving skills for generating html/svg rich visuals that would be fully interactive ([current illustrations](gen_illustrations/) are on-shotted and are not included)
+- improving skills for generating html/svg rich visuals that would be fully interactive
 - subtle transitions and transformations, just to give hint of "light and joyful" framework
 - to ensure brand consistency cards thumbnails, when populated with external images could benefit from a simple shader overlay, e.g. [halftone cmyk filter from paper] (https://shaders.paper.design/halftone-cmyk)
-- add more personality to certain section, like "Subscribe", I wanted to play with idea of using pixelated version of "={" as bg element
-- gthub stars button should be styled better and more prominent than currently
+
 
 > I ran out of time and tokens and will stop here
 >
@@ -74,8 +73,3 @@ Aside from running stardust on other pages I'd probably focus more on nitty-grit
 
 > LLM used: sonnet 5 (default in pro) 200k context window
 
-- improving skills for generating html/svg rich visuals that would be fully interactive
-- subtle transitions and transformations, just to give hint of "light and joyful" framework
-- to ensure brand consistency cards thumbnails, when populated with external images could benefit from a simple shader overlay, e.g. [halftone cmyk filter from paper] (https://shaders.paper.design/halftone-cmyk)
-
-> LLM used: sonnet 5 (default in pro) 200k context window
