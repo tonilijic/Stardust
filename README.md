@@ -61,7 +61,7 @@ Overrides are mentioned in [Override.md](plans/Override.md) file. (I've probably
 
 Aside from running stardust on other pages I'd probably focus more on nitty-gritty details that are primarily gut/feeling driven:
 
-- improving skills for generating html/svg rich visuals that would be fully interactive
+- improving skills for generating html/svg rich visuals that would be fully interactive ([current illustrations](gen_illustrations/) are on-shotted and are not included)
 - subtle transitions and transformations, just to give hint of "light and joyful" framework
 - to ensure brand consistency cards thumbnails, when populated with external images could benefit from a simple shader overlay, e.g. [halftone cmyk filter from paper] (https://shaders.paper.design/halftone-cmyk)
 
