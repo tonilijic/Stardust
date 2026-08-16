@@ -20,9 +20,9 @@ Full screenshots can be found under [screenshots](assets/screenshots/)
 
 ![Direction 1 (The corrected spec — brand-faithful, ships the declared system literally)](https://github.com/tonilijic/Stardust/blob/2849b0ecdb854471ec55296f3ba2f61e90ad3770/assets/thumbnails/Direction%20-1%402x.jpg)
 
-![Direction 2 (The schematic — the blueprint/circuit-diagram trait pushed as the page's structure)](assets/thumbnails/Direction-2@2x.jpg)
+![Direction 2 (The schematic — the blueprint/circuit-diagram trait pushed as the page's structure)]([assets/thumbnails/Direction-2@2x.jpg](https://github.com/tonilijic/Stardust/blob/2320b49e02d733ab307c121a9c2308befc71d19c/assets/thumbnails/Direction%20-2%402x.jpg))
 
-![Direction 3 (The spec document — the numbered-eyebrow trait pushed into a running RFC structure)](assets/thumbnails/Direction-3@2x.jpg)
+![Direction 3 (The spec document — the numbered-eyebrow trait pushed into a running RFC structure)]([assets/thumbnails/Direction-3@2x.jpg](https://github.com/tonilijic/Stardust/blob/2320b49e02d733ab307c121a9c2308befc71d19c/assets/thumbnails/Direction%20-3%402x.jpg))
 
 ### Quick observations on all prototypes
 
