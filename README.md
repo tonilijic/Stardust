@@ -18,7 +18,7 @@ In the limited time, (roughly 3-4 hours) use the [stardust.style](https://stardu
 
 Full screenshots can be found under [screenshots](assets/screenshots/)
 
-![Direction 1 (The corrected spec — brand-faithful, ships the declared system literally)]( )
+![Direction 1 (The corrected spec — brand-faithful, ships the declared system literally)](https://github.com/tonilijic/Stardust/blob/2849b0ecdb854471ec55296f3ba2f61e90ad3770/assets/thumbnails/Direction%20-1%402x.jpg)
 
 ![Direction 2 (The schematic — the blueprint/circuit-diagram trait pushed as the page's structure)](assets/thumbnails/Direction-2@2x.jpg)
 
