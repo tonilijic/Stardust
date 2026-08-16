@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        impeccable:craft (via stardust:prototype Phase 2)
+  writtenAt:        2026-08-16T06:45:00Z
+  page:             index
+  variant:          A
+  shapeBrief:       stardust/prototypes/index-A-shape.md
+  designSystem:     DESIGN-A.md, DESIGN-A.json
+  againstDirection: stardust/direction.md (Active 2026-08-16T06:15:00Z)
+  contentSource:    stardust/current/pages/index.json
+  unsourcedContent: []
+  fidelity:         quick
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wasp — A truly full-stack TypeScript framework that just works.</title>
+<meta name="description" content="Develop full-stack web apps without boilerplate.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUyMCIgaGVpZ2h0PSIxNTIwIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxNTIwIDE1MjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGc+PHJlY3Qgd2lkdGg9IjE1MjAiIGhlaWdodD0iMTUyMCIgcng9IjMwMCIgZmlsbD0iI2Y1Yzg0MiIvPjxnIGZpbGw9IiMxMTEiPjxwYXRoIGQ9Im0xMDA3IDMwMC0xNTYuOTggMmUtMyAwLjQ5OSAxNDIuNTFoODUuODU3YzAuMDIzOSAyZS0zIDE4Ljc2MyAxLjU2NiAzMC40NjEgNy45MTA4IDEzLjUzNyA3LjM0MjUgMTQuNjI2IDEwLjc2MyAyMS43MDQgMjAuNDE3IDMuMDY3NCA0LjE4MzUgNC45NjUxIDEwLjY4NyA2LjA0OTQgMTYuMTIzIDEuMDgyNyA1LjQyODQgMS4zNzU0IDkuNzY0MiAxLjM3NjIgOS43NzYydjE0NC4zM2wyZS0zIDAuMDI1MnMwLjU4MyA3LjEwOTMgMS43OTYgMTUuOTE4YzEuMjEzIDguODA5IDMuMDQ0OCAxOS4zMDUgNS42MDc5IDI2LjIwNSA0LjM2NzYgMTEuNzU5IDEzLjYyIDI2LjY1OSAyMS42MzMgMzYuMzYzIDkuMzg2NiAxMS4zNjcgMjIuMjI4IDIwLjEyNCAzNC45NjkgMjcuNTY4IDExLjI5NCA2LjU5ODQgMzIuNjI4IDExLjU0MiAzMy41NDggMTEuNzU0djIuMTg0N2MtMC45MjAyIDAuMjEyMzMtMjIuMjU0IDUuMTU1NS0zMy41NDggMTEuNzU0LTEyLjc0MSA3LjQ0MzktMjUuNTgzIDE2LjIwMS0zNC45NyAyNy41NjgtOC4wMTM0IDkuNzA0MS0xNy4yNjYgMjQuNjA0LTIxLjYzMyAzNi4zNjMtMi41NjMxIDYuOTAwNy00LjM5NDggMTcuMzk2LTUuNjA3OCAyNi4yMDUtMS4yMTMgOC44MDktMS43OTYgMTUuOTE4LTEuNzk2IDE1LjkxOGwtMmUtMyAwLjAyNzF2MTQ0LjMzYy04LjJlLTQgMC4wMTItMC4yOTM0OCA0LjM0NzgtMS4zNzYyIDkuNzc2Mi0xLjA4NDIgNS40MzU5LTIuOTgyIDExLjk0LTYuMDQ5NCAxNi4xMjMtNy4wNzg5IDkuNjU0Ny04LjE2NzEgMTMuMDc1LTIxLjcwNCAyMC40MTgtMTEuNjk4IDYuMzQ0OC0zMC40MzcgNy45MTA3LTMwLjQ2MSA3LjkxMDdoLTg1Ljg1N2wtMC40OTkgMTQyLjUxaDE1Ni45OXM3LjU0NjEtMC4xODcyIDE2LjQ4My0wLjYyOWM4LjkzNzEtMC40NDE4IDE5LjIzOC0xLjEyOTYgMjQuODg5LTIuMTY1MyA3LjE4MDktMS4zMTY1IDIwLjEwMi0zLjE2MTYgMzMuNTMtOS4wNzE5IDEzLjMyOS01Ljg2NjggMTYuMjk5LTcuMzY0NyAyMi40NDMtMTAuOTM5IDExLjc1OC02Ljg0MDggMjQuMTY5LTE5LjE0NiAzNC40NDEtMzIuMzExczE4LjM4OS0yNy4xNjcgMjEuNDYzLTM3LjUyNGM2LjEyMzUtMjAuNjMyIDYuMzgyLTQ3LjEyNiA2LjM4Mi00Ny4xMjZ2LTE5NS4zNmMwLTAuMDIwNyAwLjE0NS0yLjU4MDEgMC41MDUtNS43Mzk2IDAuMzYxNC0zLjE3MjIgMC45NTYtNi45NDE2IDEuNzc0Mi05LjE1MTIgMC45NTA0LTIuNTY2NCAyLjg5MTEtNy4yOTk5IDUuMzUwNC0xMS45MDUgMi40NTkyLTQuNjA0OSA1LjQ4MS05LjA4NDEgOC4zNzAxLTExLjExNSA1LjY0My0zLjk2NzQgMTIuODA5LTkuNTgyMiAyMC4yOS0xMC42MSA1LjkxMzMtMC44MTI1MiAxMy4xODItMS40Mzk3IDEzLjIwMi0xLjQ0MTdoNTMuODkydi0xNDkuODNoLTUzLjg5MmMtMC4wMTktMmUtMyAtNy4yODg0LTAuNjI5MTUtMTMuMjAyLTEuNDQxNy03LjQ4MTQtMS4wMjgtMTQuNjQ4LTYuNjQyOS0yMC4yOS0xMC42MS0yLjg4OTEtMi4wMzEyLTUuOTEwOS02LjUxMDQtOC4zNzAxLTExLjExNS0yLjQ1OTMtNC42MDQ5LTQuNC05LjMzODQtNS4zNTA0LTExLjkwNS0wLjgxODItMi4yMDk1LTEuNDEyOC01Ljk3ODktMS43NzQyLTkuMTUxMi0wLjM2LTMuMTU5NS0wLjUwMzgtNS43MTg4LTAuNTA1LTUuNzM5NnYtMTk1LjM2cy0wLjI1ODUtMjYuNDk0LTYuMzgyLTQ3LjEyNmMtMy4wNzM5LTEwLjM1Ny0xMS4xOTEtMjQuMzU5LTIxLjQ2My0zNy41MjRzLTIyLjY4My0yNS40Ny0zNC40NDEtMzIuMzExYy02LjE0MzgtMy41NzQ1LTkuMTE0MS01LjA3MjMtMjIuNDQzLTEwLjkzOS0xMy40MjctNS45MTAyLTI2LjM0OS03Ljc1NTQtMzMuNTMtOS4wNzE4LTUuNjUwMy0xLjAzNTgtMTUuOTUyLTEuNzIzNi0yNC44ODktMi4xNjU0LTguOTM2Ni0wLjQ0MTgtMTYuNDgzLTAuNjI4OTItMTYuNDgzLTAuNjI4OTJ6IiBzdG9wLWNvbG9yPSIjMDAwMDAwIi8+PHJlY3QgeD0iMjUwIiB5PSI4MzAiIHdpZHRoPSI1MDAiIGhlaWdodD0iMTYwIiBzdHJva2Utd2lkdGg9IjEuMzQ3MiIvPjxyZWN0IHg9IjI1MCIgeT0iNTMwIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjE2MCIgc3Ryb2tlLXdpZHRoPSIxLjM0NzIiLz48L2c+PC9nPjwvc3ZnPgo=">
+<style>
+:root{
+  --ink:#111111; --paper:#f7f5f0; --yellow:#f5c842; --gray:#5f5f5f; --tint:#fff3cc;
+  --font-heading:'JetBrains Mono','IBM Plex Mono',monospace;
+  --font-body:'JetBrains Mono','IBM Plex Mono',monospace;
+  --font-mono:'JetBrains Mono',SFMono-Regular,Menlo,monospace;
+  --radius:0px; --border-w:2px; --max-width:1140px;
+  --rail-w:240px; --section-pad-d:64px; --section-pad-m:32px;
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:var(--yellow);color:var(--ink)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);
+  line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.mono{font-family:var(--font-heading);font-weight:600;line-height:1.15;letter-spacing:-0.01em;
+  text-wrap:balance}
+p{text-wrap:pretty}
+a{color:inherit}
+.link{text-decoration:none;border-bottom:1px solid currentColor}
+a:focus-visible,button:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+img{max-width:100%;display:block}
+code,pre{font-family:var(--font-mono)}
+
+.shell{display:grid;grid-template-columns:var(--rail-w) 1fr}
+@media (max-width:1023px){.shell{grid-template-columns:1fr}}
+
+header[data-section="header"]{
+  grid-column:1/-1;position:sticky;top:0;z-index:20;background:var(--paper);
+  border-bottom:1px solid var(--ink);
+  display:flex;align-items:center;justify-content:space-between;padding:14px 32px}
+.nav-github{display:inline-flex;align-items:center;gap:6px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-heading);font-weight:700;font-size:1rem}
+.brand img{width:28px;height:28px}
+.nav-links{display:flex;gap:28px;font-size:.9rem;font-weight:500}
+.nav-links a{text-decoration:none}
+.nav-links a:hover{text-decoration:underline;text-decoration-color:var(--yellow);text-underline-offset:4px}
+.btn{font-family:var(--font-heading);font-weight:600;font-size:.85rem;padding:10px 22px;
+  border-radius:var(--radius);border:var(--border-w) solid var(--ink);text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:transform .15s ease, opacity .15s ease}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--ink)}
+.btn-secondary:hover{background:var(--ink);color:var(--paper)}
+.header-actions{display:flex;gap:14px;align-items:center}
+@media (max-width:640px){.nav-links{display:none}}
+
+nav[data-section="rail"]{
+  position:sticky;top:65px;align-self:start;height:calc(100vh - 65px);overflow-y:auto;
+  border-right:1px solid var(--ink);padding:24px 0}
+@media (max-width:1023px){
+  nav[data-section="rail"]{position:sticky;height:auto;border-right:none;z-index:15;
+    background:var(--paper);border-bottom:1px solid var(--ink);
+    display:flex;overflow-x:auto;padding:12px 16px;gap:4px;transition:transform .25s ease}
+  nav[data-section="rail"].nav-hidden{transform:translateY(-100%)}
+}
+.rail-item{display:flex;gap:10px;align-items:baseline;padding:9px 20px;font-family:var(--font-heading);
+  font-size:.78rem;color:var(--ink);text-decoration:none;border-left:var(--border-w) solid transparent;
+  white-space:nowrap}
+.rail-item:hover{background:var(--tint);border-left-color:var(--yellow)}
+.rail-item.active{background:var(--yellow);border-left-color:var(--ink)}
+.rail-item.active .rail-num{color:var(--ink)}
+.rail-num{color:var(--gray);min-width:1.4em}
+@media (max-width:1023px){.rail-item{border-left:none;border-bottom:var(--border-w) solid transparent}
+  .rail-item:hover,.rail-item.active{border-bottom-color:var(--yellow)}}
+
+main{min-width:0}
+section{padding:var(--section-pad-d) 32px;max-width:var(--max-width);margin:0 auto}
+@media (max-width:640px){section{padding:var(--section-pad-m) 20px}}
+section + section{border-top:1px solid #e5e2da}
+.eyebrow{font-family:var(--font-heading);font-size:.72rem;font-weight:600;letter-spacing:.08em;
+  color:var(--ink);background:var(--yellow);display:inline-block;padding:3px 8px;margin:0 0 12px}
+h2{font-size:2rem;margin:0 0 20px}
+@media (max-width:640px){h2{font-size:1.5rem}}
+.lede{font-size:16px;color:#3a3d42;max-width:68ch;margin:0 0 32px}
+
+section[data-section="hero"]{padding-top:80px;padding-bottom:80px;display:grid;
+  grid-template-columns:1.3fr 1fr;gap:56px;align-items:center}
+@media (max-width:900px){section[data-section="hero"]{grid-template-columns:1fr}}
+.hero h1{font-size:3.25rem;margin:0 0 22px;max-width:22ch}
+@media (max-width:640px){.hero h1{font-size:2.1rem}}
+.hero .lede{margin-bottom:34px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.code-panel{background:var(--ink);color:var(--tint);border-radius:var(--radius);
+  padding:24px;overflow-x:auto;font-size:.78rem;line-height:1.7;box-shadow:0 3px 5px rgba(0,0,0,.15)}
+.code-panel .kw{color:var(--yellow)}
+.code-panel .str{color:#9fd3a8}
+.code-panel .com{color:#8b8f96}
+
+.rail-content-block{padding:32px 0;border-top:1px solid #e5e2da}
+.rail-content-block:first-child{border-top:none;padding-top:0}
+.props-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+@media (max-width:768px){.props-grid{grid-template-columns:1fr}}
+.prop-card{border:1px solid var(--gray);padding:22px}
+.prop-num{font-family:var(--font-heading);color:var(--gray);font-size:.75rem;margin-bottom:10px}
+.prop-card h3{font-size:1.05rem;margin:0 0 10px}
+.prop-card p{margin:0;font-size:16px;color:#3a3d42}
+
+.feature-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e5e2da;
+  border:1px solid #e5e2da;margin-top:8px}
+@media (max-width:768px){.feature-list{grid-template-columns:1fr}}
+.feature-item{background:var(--paper);padding:20px}
+.feature-item h3{font-size:.92rem;margin:0 0 6px}
+.feature-item .tag{font-size:.8rem;color:var(--gray);font-family:var(--font-mono)}
+.feature-code{margin-top:28px}
+
+.ai-flex{display:flex;gap:16px;margin-top:24px}
+.ai-flex > .ai-card{flex:1}
+.ai-stack{display:flex;flex-direction:column;gap:16px;flex:1}
+@media (max-width:900px){.ai-flex{flex-direction:column}}
+.ai-card{background:var(--ink);color:var(--paper);padding:24px;border-radius:var(--radius)}
+.ai-card .prompt{font-family:var(--font-mono);font-size:13px;color:var(--yellow);margin:0 0 14px}
+.ai-card .prompt .ask{color:#fff}
+.ai-card ul{list-style:none;margin:0;padding:0;font-size:13px;line-height:1.65;color:#e3e1db}
+.ai-card li{margin-bottom:8px;position:relative;padding-left:20px}
+.ai-card li::before{content:'>';color:var(--yellow);font-family:var(--font-heading);font-weight:700;
+  position:absolute;left:0}
+.ai-card li .lead{color:#fff}
+
+.diagram{display:flex;align-items:center;gap:16px;margin:28px 0;flex-wrap:wrap}
+.diagram-box{border:var(--border-w) solid var(--ink);padding:18px 22px;font-family:var(--font-heading);
+  font-size:.82rem;font-weight:600;text-align:center;background:var(--paper)}
+.diagram-arrow{font-family:var(--font-heading);color:var(--gray)}
+
+.card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+@media (max-width:900px){.card-grid-3{grid-template-columns:1fr}}
+.example-card{border:1px solid var(--gray);overflow:hidden}
+.example-card .thumb{aspect-ratio:16/9;background:var(--tint);display:flex;align-items:center;
+  justify-content:center;font-family:var(--font-heading);color:var(--ink);font-size:.8rem}
+.example-card .body{padding:20px}
+.example-card h3{font-size:1rem;margin:0 0 8px}
+.example-card p{font-size:16px;color:#3a3d42;margin:0 0 14px}
+.example-card .links{display:flex;gap:16px;font-size:.82rem;font-weight:600}
+.example-card img{width:100%;height:100%;object-fit:cover}
+
+.card-grid-3 .example-card{position:relative;display:flex;flex-direction:column}
+.card-grid-3 .example-card .body{display:flex;flex-direction:column;flex:1}
+.card-grid-3 .example-card .body p{flex:1}
+.card-grid-3 .example-card .links{margin-top:auto}
+.card-grid-3 .example-card .links a{position:relative;z-index:1}
+.card-grid-3 .example-card .links a:first-child::after{content:'';position:absolute;inset:0}
+
+.community-band{background:var(--yellow);padding:48px 32px;text-align:center;margin:0 -32px}
+.community-band h3{font-size:1.4rem;margin:0 0 12px}
+
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:24px}
+@media (max-width:768px){.testi-grid{grid-template-columns:1fr}}
+.testi-card{border:1px solid var(--gray);padding:22px}
+.testi-card p{margin:0 0 16px;font-size:16px}
+.testi-card .who{font-family:var(--font-heading);font-size:.78rem;color:var(--gray)}
+.pull-quote{border-left:var(--border-w) solid var(--yellow);padding-left:24px;margin:36px 0;font-size:16px;
+  font-style:normal;max-width:68ch}
+
+.principles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:24px}
+.principle{padding:20px 0;border-top:var(--border-w) solid var(--ink)}
+.principle h3{font-size:.95rem;margin:0 0 8px}
+.principle p{font-size:16px;color:#3a3d42;margin:0}
+
+.newsletter-band{background:var(--tint);padding:56px 32px;text-align:center;margin:0 -32px}
+.newsletter-form{display:flex;gap:0;max-width:420px;margin:24px auto 0;border:1px solid var(--ink)}
+.newsletter-form input{flex:1;border:none;background:#fff;padding:12px 16px;font-family:var(--font-body);font-size:.9rem}
+.newsletter-form input:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
+.newsletter-form button{border:none;border-left:1px solid var(--ink);background:var(--ink);
+  color:var(--paper);padding:12px 22px;font-family:var(--font-heading);font-weight:600;cursor:pointer}
+
+.roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+@media (max-width:768px){.roadmap-grid{grid-template-columns:1fr}}
+.roadmap-col{background:var(--ink);color:var(--paper);padding:20px;border-radius:var(--radius)}
+.roadmap-col h3{font-size:.9rem;margin:0 0 14px;color:var(--yellow)}
+.roadmap-item{background:#232323;padding:12px 14px;margin-bottom:10px;font-size:16px}
+.roadmap-item .badge{font-family:var(--font-mono);font-size:.7rem;color:#9a9a9a;display:block;margin-bottom:4px}
+
+.faq-item{border-bottom:1px solid var(--gray)}
+.faq-item summary{padding:18px 0;font-weight:600;cursor:pointer;list-style:none;display:flex;
+  justify-content:space-between;align-items:center}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-family:var(--font-heading);font-size:1.2rem;color:var(--gray);
+  display:inline-block;transition:transform 250ms var(--ease-in-out-cubic)}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item{interpolate-size:allow-keywords}
+.faq-item::details-content{
+  height:0;overflow:clip;opacity:0;
+  transition:content-visibility 300ms allow-discrete, height 300ms var(--ease-out-expo),
+    opacity 300ms var(--ease-out-expo)}
+.faq-item[open]::details-content{height:auto;opacity:1}
+.faq-item p{margin:0 0 18px;color:#3a3d42;font-size:16px}
+
+footer[data-section="footer"]{grid-column:1/-1;background:var(--ink);color:var(--paper);
+  padding:56px 32px 32px}
+.footer-grid{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+@media (max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
+.footer-col h3{font-family:var(--font-heading);font-size:.75rem;color:#9a9a9a;margin:0 0 14px;
+  text-transform:uppercase;letter-spacing:.06em}
+.footer-col a{display:block;color:var(--paper);text-decoration:none;font-size:.88rem;margin-bottom:10px;opacity:.9}
+.footer-col a:hover{opacity:1;text-decoration:underline}
+.footer-bottom{max-width:var(--max-width);margin:40px auto 0;padding-top:24px;border-top:1px solid #333;
+  font-size:.78rem;color:#9a9a9a}
+@media (min-width:1024px){
+  footer[data-section="footer"]{padding-left:calc(var(--rail-w) + 32px)}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<header data-section="header" data-intent="navigate" data-layout="sticky-top">
+  <div class="brand">
+    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUyMCIgaGVpZ2h0PSIxNTIwIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxNTIwIDE1MjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGc+CiAgICA8cmVjdCB3aWR0aD0iMTUyMCIgaGVpZ2h0PSIxNTIwIiBmaWxsPSIjZjVjODQyIiAvPgogICAgPHBhdGgKICAgICAgZD0ibTEwMDcgMzAwLTE1Ni45OCAyZS0zIDAuNDk5IDE0Mi41MWg4NS44NTdjMC4wMjM5IDJlLTMgMTguNzYzIDEuNTY2IDMwLjQ2MSA3LjkxMDggMTMuNTM3IDcuMzQyNSAxNC42MjYgMTAuNzYzIDIxLjcwNCAyMC40MTcgMy4wNjc0IDQuMTgzNSA0Ljk2NTEgMTAuNjg3IDYuMDQ5NCAxNi4xMjMgMS4wODI3IDUuNDI4NCAxLjM3NTQgOS43NjQyIDEuMzc2MiA5Ljc3NjJ2MTQ0LjMzbDJlLTMgMC4wMjUyczAuNTgzIDcuMTA5MyAxLjc5NiAxNS45MThjMS4yMTMgOC44MDkgMy4wNDQ4IDE5LjMwNSA1LjYwNzkgMjYuMjA1IDQuMzY3NiAxMS43NTkgMTMuNjIgMjYuNjU5IDIxLjYzMyAzNi4zNjMgOS4zODY2IDExLjM2NyAyMi4yMjggMjAuMTI0IDM0Ljk2OSAyNy41NjggMTEuMjk0IDYuNTk4NCAzMi42MjggMTEuNTQyIDMzLjU0OCAxMS43NTR2Mi4xODQ3Yy0wLjkyMDIgMC4yMTIzMy0yMi4yNTQgNS4xNTU1LTMzLjU0OCAxMS43NTQtMTIuNzQxIDcuNDQzOS0yNS41ODMgMTYuMjAxLTM0Ljk3IDI3LjU2OC04LjAxMzQgOS43MDQxLTE3LjI2NiAyNC42MDQtMjEuNjMzIDM2LjM2My0yLjU2MzEgNi45MDA3LTQuMzk0OCAxNy4zOTYtNS42MDc4IDI2LjIwNS0xLjIxMyA4LjgwOS0xLjc5NiAxNS45MTgtMS43OTYgMTUuOTE4bC0yZS0zIDAuMDI3MXYxNDQuMzNjLTguMmUtNCAwLjAxMi0wLjI5MzQ4IDQuMzQ3OC0xLjM3NjIgOS43NzYyLTEuMDg0MiA1LjQzNTktMi45ODIgMTEuOTQtNi4wNDk0IDE2LjEyMy03LjA3ODkgOS42NTQ3LTguMTY3MSAxMy4wNzUtMjEuNzA0IDIwLjQxOC0xMS42OTggNi4zNDQ4LTMwLjQzNyA3LjkxMDctMzAuNDYxIDcuOTEwN2gtODUuODU3bC0wLjQ5OSAxNDIuNTFoMTU2Ljk5czcuNTQ2MS0wLjE4NzIgMTYuNDgzLTAuNjI5YzguOTM3MS0wLjQ0MTggMTkuMjM4LTEuMTI5NiAyNC44ODktMi4xNjUzIDcuMTgwOS0xLjMxNjUgMjAuMTAyLTMuMTYxNiAzMy41My05LjA3MTkgMTMuMzI5LTUuODY2OCAxNi4yOTktNy4zNjQ3IDIyLjQ0My0xMC45MzkgMTEuNzU4LTYuODQwOCAyNC4xNjktMTkuMTQ2IDM0LjQ0MS0zMi4zMTFzMTguMzg5LTI3LjE2NyAyMS40NjMtMzcuNTI0YzYuMTIzNS0yMC42MzIgNi4zODItNDcuMTI2IDYuMzgyLTQ3LjEyNnYtMTk1LjM2YzAtMC4wMjA3IDAuMTQ1LTIuNTgwMSAwLjUwNS01LjczOTYgMC4zNjE0LTMuMTcyMiAwLjk1Ni02Ljk0MTYgMS43NzQyLTkuMTUxMiAwLjk1MDQtMi41NjY0IDIuODkxMS03LjI5OTkgNS4zNTA0LTExLjkwNSAyLjQ1OTItNC42MDQ5IDUuNDgxLTkuMDg0MSA4LjM3MDEtMTEuMTE1IDUuNjQzLTMuOTY3NCAxMi44MDktOS41ODIyIDIwLjI5LTEwLjYxIDUuOTEzMy0wLjgxMjUyIDEzLjE4Mi0xLjQzOTcgMTMuMjAyLTEuNDQxN2g1My44OTJ2LTE0OS44M2gtNTMuODkyYy0wLjAxOS0yZS0zIC03LjI4ODQtMC42MjkxNS0xMy4yMDItMS40NDE3LTcuNDgxNC0xLjAyOC0xNC42NDgtNi42NDI5LTIwLjI5LTEwLjYxLTIuODg5MS0yLjAzMTItNS45MTA5LTYuNTEwNC04LjM3MDEtMTEuMTE1LTIuNDU5My00LjYwNDktNC40LTkuMzM4NC01LjM1MDQtMTEuOTA1LTAuODE4Mi0yLjIwOTUtMS40MTI4LTUuOTc4OS0xLjc3NDItOS4xNTEyLTAuMzYtMy4xNTk1LTAuNTAzOC01LjcxODgtMC41MDUtNS43Mzk2di0xOTUuMzZzLTAuMjU4NS0yNi40OTQtNi4zODItNDcuMTI2Yy0zLjA3MzktMTAuMzU3LTExLjE5MS0yNC4zNTktMjEuNDYzLTM3LjUyNHMtMjIuNjgzLTI1LjQ3LTM0LjQ0MS0zMi4zMTFjLTYuMTQzOC0zLjU3NDUtOS4xMTQxLTUuMDcyMy0yMi40NDMtMTAuOTM5LTEzLjQyNy01LjkxMDItMjYuMzQ5LTcuNzU1NC0zMy41My05LjA3MTgtNS42NTAzLTEuMDM1OC0xNS45NTItMS43MjM2LTI0Ljg4OS0yLjE2NTQtOC45MzY2LTAuNDQxOC0xNi40ODMtMC42Mjg5Mi0xNi40ODMtMC42Mjg5MnoiCiAgICAgIGZpbGw9IiMxMTEiIHN0b3AtY29sb3I9IiMwMDAwMDAiIC8+CiAgICA8cmVjdCB4PSIyNTAiIHk9IjgzMCIgd2lkdGg9IjUwMCIgaGVpZ2h0PSIxNjAiIHN0cm9rZS13aWR0aD0iMS4zNDcyIiBmaWxsPSIjMTExIiAvPgogICAgPHJlY3QgeD0iMjUwIiB5PSI1MzAiIHdpZHRoPSI1MDAiIGhlaWdodD0iMTYwIiBzdHJva2Utd2lkdGg9IjEuMzQ3MiIgZmlsbD0iIzExMSIgLz4KICA8L2c+Cjwvc3ZnPg==" alt="Wasp logo">
+    WASP
+  </div>
+  <nav class="nav-links">
+    <a href="/docs">Docs</a>
+    <a href="/blog">Blog</a>
+    <a href="https://github.com/wasp-lang/wasp" class="nav-github"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>18k+</span></a>
+    <a href="https://discord.gg/rzdnErX">Discord</a>
+  </nav>
+  <div class="header-actions">
+    <a href="/docs/quick-start" class="btn btn-primary">&gt;_ Get started</a>
+  </div>
+</header>
+
+<nav data-section="rail" data-intent="navigate" data-layout="sticky-left" data-items="14" aria-label="Page sections">
+  <a class="rail-item active" href="#hero"><span class="rail-num">00</span>Intro</a>
+  <a class="rail-item" href="#properties"><span class="rail-num">01</span>Properties</a>
+  <a class="rail-item" href="#features"><span class="rail-num">02</span>Batteries included</a>
+  <a class="rail-item" href="#ai"><span class="rail-num">03</span>Perfect for AI</a>
+  <a class="rail-item" href="#how"><span class="rail-num">04</span>How it works</a>
+  <a class="rail-item" href="#examples"><span class="rail-num">05</span>Examples</a>
+  <a class="rail-item" href="#built-on-wasp"><span class="rail-num">06</span>Built on Wasp</a>
+  <a class="rail-item" href="#community"><span class="rail-num">07</span>Community</a>
+  <a class="rail-item" href="#testimonials"><span class="rail-num">08</span>What builders say</a>
+  <a class="rail-item" href="#way-of-wasp"><span class="rail-num">09</span>The way of the Wasp</a>
+  <a class="rail-item" href="#newsletter"><span class="rail-num">10</span>Stay up to date</a>
+  <a class="rail-item" href="#roadmap"><span class="rail-num">11</span>Roadmap</a>
+  <a class="rail-item" href="#faq"><span class="rail-num">12</span>FAQ</a>
+</nav>
+
+<main>
+
+<section id="hero" data-section="hero" data-intent="primary-action" data-layout="split-code" data-items="2">
+  <div class="hero">
+    <h1>A truly <span style="white-space:nowrap">full-stack</span> TypeScript framework that just works.</h1>
+    <p class="lede">React, Node.js, and Prisma — wired together with auth, jobs, and deployment built in. Ship in a day and own every line. Designed for humans, works beautifully with AI.</p>
+    <div class="hero-ctas">
+      <a href="/docs/quick-start" class="btn btn-primary">&gt;_ Get started</a>
+      <a href="/docs" class="btn btn-secondary">See documentation</a>
+    </div>
+  </div>
+  <div class="code-panel">
+<pre><span class="kw">import</span> { app, page, query, route } <span class="kw">from</span> <span class="str">"@wasp.sh/spec"</span>;
+<span class="kw">import</span> { MainPage } <span class="kw">from</span> <span class="str">"./src/MainPage"</span> <span class="kw">with</span> { type: <span class="str">"ref"</span> };
+<span class="kw">import</span> { getTasks } <span class="kw">from</span> <span class="str">"./src/tasks"</span> <span class="kw">with</span> { type: <span class="str">"ref"</span> };
+
+<span class="kw">export default</span> app({
+  wasp: { version: <span class="str">"^0.24.0"</span> },
+  title: <span class="str">"ToDo App"</span>,
+  auth: {  <span class="com">// Full-stack auth out-of-the-box.</span>
+    userEntity: <span class="str">"User"</span>,
+    methods: { google: {}, gitHub: {}, email: {} },
+    onAuthFailedRedirectTo: <span class="str">"/login"</span>
+  },
+  spec: [
+    route(<span class="str">"RootRoute"</span>, <span class="str">"/"</span>, page(MainPage, {
+      authRequired: <span class="kw">true</span>
+    })),
+    query(getTasks, {
+      entities: [<span class="str">"Task"</span>]  <span class="com">// Automatic cache invalidation.</span>
+    })
+  ]
+});</pre>
+  </div>
+</section>
+
+<section id="properties" data-section="properties" data-intent="inform" data-layout="grid-3" data-items="3">
+  <p class="eyebrow">01</p>
+  <h2>Properties</h2>
+  <div class="props-grid">
+    <div class="prop-card"><div class="prop-num">01</div><h3>High Level</h3>
+      <p>A uniquely powerful config layer serves as a backbone that connects all parts of the stack — frontend, backend, database, and deployment.</p></div>
+    <div class="prop-card"><div class="prop-num">02</div><h3>Batteries: Included</h3>
+      <p>Like Rails and Laravel, focus on your app, not your framework. Auth, jobs, email, deploy and much more built in.</p></div>
+    <div class="prop-card"><div class="prop-num">03</div><h3>Fully Yours</h3>
+      <p>Open source, no lock-in. No third-party provider or cloud platform dependency. Host anywhere.</p></div>
+  </div>
+</section>
+
+<section id="features" data-section="features" data-intent="inform" data-layout="list-with-code" data-items="12">
+  <p class="eyebrow">02</p>
+  <h2>Batteries: Included</h2>
+  <p class="lede">Instead of wiring everything yourself, Wasp gives you a cohesive set of full-stack features so you can focus on what makes your app unique. Define your app via a specialized full-stack logic layer in TypeScript, using high-level terms like app, route, page — think framework config, but taken to a whole new level.</p>
+  <div class="feature-list">
+    <div class="feature-item"><h3>High-Level Spec</h3><span class="tag">app, auth, route, ...</span></div>
+    <div class="feature-item"><h3>Full-Stack Auth</h3><span class="tag">username · email · social</span></div>
+    <div class="feature-item"><h3>Data Models</h3><span class="tag">typed · integrated</span></div>
+    <div class="feature-item"><h3>Type-Safe RPC</h3><span class="tag">typed client ↔ server</span></div>
+    <div class="feature-item"><h3>Background Jobs</h3><span class="tag">cron · one-off · retry</span></div>
+    <div class="feature-item"><h3>Email Sending</h3><span class="tag">provider-agnostic</span></div>
+    <div class="feature-item"><h3>WebSockets</h3><span class="tag">typed real-time</span></div>
+    <div class="feature-item"><h3>Static Rendering</h3><span class="tag">SSG for SEO &amp; LLMs</span></div>
+    <div class="feature-item"><h3>Simple Deployment</h3><span class="tag">one command, any platform</span></div>
+    <div class="feature-item"><h3>Type-Safe Links</h3><span class="tag">typed routes &amp; params</span></div>
+    <div class="feature-item"><h3>Custom HTTP API</h3><span class="tag">REST · webhooks</span></div>
+    <div class="feature-item"><h3>Wasp CLI</h3><span class="tag">create · build · deploy</span></div>
+  </div>
+</section>
+
+<section id="ai" data-section="ai" data-intent="inform" data-layout="grid-3" data-items="3">
+  <p class="eyebrow">03</p>
+  <h2>Perfect for AI, by design</h2>
+  <p class="lede">By making Wasp as easy as possible for humans (opinionated, high-level, batteries-included) we made it the ideal framework for AI too.</p>
+  <div class="ai-flex">
+    <div class="ai-card">
+      <p class="prompt">$ <span class="ask">ask</span> "why AI loves Wasp"</p>
+      <ul>
+        <li><span class="lead">Clear best</span> practices and structure keep AI's focus on what is important.</li>
+        <li><span class="lead">Less boilerplate,</span> less code, less space for bugs and security issues.</li>
+        <li><span class="lead">No "connection"</span> points where things break — Wasp glues everything together.</li>
+        <li><span class="lead">Less code</span> = smaller context, saving tokens and keeping your AI smart.</li>
+      </ul>
+    </div>
+    <div class="ai-stack">
+      <div class="ai-card">
+        <p class="prompt">$ <span class="ask">ask</span> "how does Wasp keep me in control"</p>
+        <ul>
+          <li><span class="lead">Wasp's spec</span> files give you a unique high-level overview of your app.</li>
+          <li><span class="lead">High-level code</span> keeps you in the loop even when AI does the heavy lifting.</li>
+        </ul>
+      </div>
+      <div class="ai-card">
+        <p class="prompt">$ <span class="ask">ask</span> "first-party AI tooling?"</p>
+        <ul>
+          <li><span class="lead">Rule files,</span> skills, and plugins crafted by the Wasp team and shaped by community experience.</li>
+          <li><span class="lead">llms.txt built</span> directly from the docs and always up to date.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:24px"><a href="/vibe-coding" class="link" style="font-weight:600">See how Wasp supercharges vibe coding</a></p>
+</section>
+
+<section id="how" data-section="how-it-works" data-intent="inform" data-layout="diagram" data-items="3">
+  <p class="eyebrow">04</p>
+  <h2>How It Works</h2>
+  <p class="lede">You write your app as high-level config in *.wasp.ts files, alongside the usual React, Node, and Prisma code. Wasp compiles it into a full-stack app, ready to deploy anywhere.</p>
+  <div class="diagram">
+    <div class="diagram-box">YOUR CODE<br><span style="font-weight:400;color:var(--gray);font-size:.75rem">*.wasp.ts</span></div>
+    <span class="diagram-arrow">→</span>
+    <div class="diagram-box">IR</div>
+    <span class="diagram-arrow">→</span>
+    <div class="diagram-box">GENERATED CODE</div>
+  </div>
+  <p style="font-size:16px;color:var(--gray)">* Treat the generated code like any compiler output. You can look at it, but there is no need to.</p>
+</section>
+
+<section id="examples" data-section="examples" data-intent="explore" data-layout="grid-3" data-items="3">
+  <p class="eyebrow">05</p>
+  <h2>Example Apps</h2>
+  <p class="lede">Reference implementations to learn from, fork, or deploy. Each one shows a complete Wasp app. Read the code, run it locally, ship it your way.</p>
+  <div class="card-grid-3">
+    <div class="example-card">
+      <div class="thumb">TodoAppTs</div>
+      <div class="body"><h3>Todo App</h3><p>A famous To-Do list app, implemented in TypeScript.</p>
+        <div class="links"><a href="https://github.com/wasp-lang/wasp/tree/release/examples/tutorials/TodoAppTs" class="link">Code</a></div></div>
+    </div>
+    <div class="example-card">
+      <div class="thumb">CoverLetterGPT</div>
+      <div class="body"><h3>CoverLetterGPT</h3><p>Generate cover letters based on your CV and the job description. Powered by ChatGPT.</p>
+        <div class="links"><a href="https://coverlettergpt.xyz/" class="link">Demo</a><a href="https://github.com/vincanger/coverlettergpt" class="link">Code</a></div></div>
+    </div>
+    <div class="example-card">
+      <div class="thumb">Waspello</div>
+      <div class="body"><h3>Waspello</h3><p>A Trello-style kanban board with lists, draggable cards, and user auth.</p>
+        <div class="links"><a href="https://waspello-demo.netlify.app/" class="link">Demo</a><a href="https://github.com/wasp-lang/wasp/tree/release/examples/waspello" class="link">Code</a></div></div>
+    </div>
+  </div>
+  <p style="margin-top:24px"><a href="https://github.com/wasp-lang/wasp/tree/release/examples" class="link" style="font-weight:600">See all examples</a></p>
+</section>
+
+<section id="built-on-wasp" data-section="built-on-wasp" data-intent="social-proof" data-layout="grid-3" data-items="3">
+  <p class="eyebrow">06</p>
+  <h2>Built on Wasp</h2>
+  <p class="lede">Live apps the community built and shipped on top of Wasp, running in production today.</p>
+  <div class="card-grid-3">
+    <div class="example-card">
+      <div class="thumb"><img src="https://wasp.sh/img/lp/examples/scribeist.webp" alt="Scribeist" loading="lazy"></div>
+      <div class="body"><h3>Scribeist</h3><p>AI writing platform with workspaces for novels, blogs, essays, and notes.</p>
+        <div class="links"><a href="https://scribeist.com/" class="link">Visit site</a></div></div>
+    </div>
+    <div class="example-card">
+      <div class="thumb"><img src="https://wasp.sh/img/lp/examples/microinfluencers.webp" alt="Microinfluencer Club" loading="lazy"></div>
+      <div class="body"><h3>Microinfluencer Club</h3><p>Connect brands with micro-influencers to run marketing campaigns.</p>
+        <div class="links"><a href="https://microinfluencer.club/" class="link">Visit site</a></div></div>
+    </div>
+    <div class="example-card">
+      <div class="thumb"><img src="https://wasp.sh/img/lp/examples/searchcraft.webp" alt="Searchcraft" loading="lazy"></div>
+      <div class="body"><h3>Searchcraft</h3><p>AI-powered search engine for product teams, with keyword precision plus semantic understanding.</p>
+        <div class="links"><a href="https://www.searchcraft.io/" class="link">Visit site</a><a href="/blog/2026/07/20/made-with-wasp-searchcraft" class="link">Read the story</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="community" data-section="community" data-intent="navigate" data-layout="band" data-items="1">
+  <div class="community-band">
+    <h3>Join the community</h3>
+    <p style="max-width:56ch;margin:0 auto">Real builders, real apps, real conversations. Drop into Discord to ask questions, share what you're working on, or just hang out.</p>
+    <a href="https://discord.gg/rzdnErX" class="btn btn-primary" style="margin-top:20px">Drop into Discord</a>
+  </div>
+</section>
+
+<section id="testimonials" data-section="testimonials" data-intent="social-proof" data-layout="grid-4" data-items="4">
+  <p class="eyebrow">08</p>
+  <h2>What Builders Say</h2>
+  <blockquote class="pull-quote">"Wasp is as game-changing for me as React has been many years back. Its simplicity, and how well it captures most full-stack engineering tasks is pure genius. I believe Wasp will become the #1 web technology in just a couple years."</blockquote>
+  <div class="testi-grid">
+    <div class="testi-card"><p>"Wasp is by far the best for AI coding. The high-level Wasp file keeps me on top of everything."</p>
+      <div class="who">Marcel Coetzee · Founder @ Hireveld</div></div>
+    <div class="testi-card"><p>"If you start with Wasp, 80% of the pains of vibe coding are taken care of for you already."</p>
+      <div class="who">Kenny Rogers · Dev Rel &amp; AI-First Educator</div></div>
+    <div class="testi-card"><p>"Everything just works on the first try — minimal intervention needed for anything."</p>
+      <div class="who">Hrvoje Pavlinovic · Senior Engineer @ Memoato</div></div>
+    <div class="testi-card"><p>"Just using AI would make it harder to sleep at night. With Wasp I feel secure, like I'm not cutting any corners."</p>
+      <div class="who">Robbie Artress · Founder @ PeakMastering</div></div>
+  </div>
+</section>
+
+<section id="way-of-wasp" data-section="way-of-wasp" data-intent="inform" data-layout="grid-5" data-items="5">
+  <p class="eyebrow">09</p>
+  <h2>The Way of the Wasp</h2>
+  <div class="principles-grid">
+    <div class="principle"><h3>"Onion" architecture</h3><p>We aim to make every surface of Wasp a layer of APIs: highest level covers 80% of the use cases, and then you can peel layer after layer as you need more, trading simplicity for flexibility.</p></div>
+    <div class="principle"><h3>Truly full-stack</h3><p>In Wasp, full-stack is not an after-thought, it is the initial and central point of our design since inception of Wasp as an idea.</p></div>
+    <div class="principle"><h3>A powerful, unique specification layer</h3><p>Wasp stands for Web App SPecification: you describe the full-stack behaviour of your app in *.wasp.ts files, then implement the details in React, Node, Prisma.</p></div>
+    <div class="principle"><h3>Greatest &gt; latest</h3><p>We are not chasing the bleeding edge. We critically track and curate the latest web dev trends to provide a deeply integrated, cohesive experience.</p></div>
+    <div class="principle"><h3>Managed experience over DIY</h3><p>You don't build your framework up, you build it down: start with everything working, then take more control where you need it.</p></div>
+  </div>
+</section>
+
+<section id="newsletter" data-section="newsletter" data-intent="capture" data-layout="band" data-items="1">
+  <div class="newsletter-band">
+    <p class="eyebrow" style="text-align:center">10</p>
+    <h2>Stay up to date</h2>
+    <p>Be the first to know when we ship new features and updates!</p>
+    <form class="newsletter-form" onsubmit="return false">
+      <input type="email" placeholder="you@example.com" aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<section id="roadmap" data-section="roadmap" data-intent="inform" data-layout="kanban" data-items="2">
+  <p class="eyebrow">11</p>
+  <h2>Roadmap</h2>
+  <p class="lede">Work on Wasp never stops: get a glimpse of what is coming next!</p>
+  <div class="roadmap-grid">
+    <div class="roadmap-col"><h3>◇ Ideas</h3>
+      <div class="roadmap-item"><span class="badge">Wasp Studio / Dev Tooling</span>In consideration, not what we'll work on next</div>
+      <div class="roadmap-item"><span class="badge">Modular Wasp (Multi, ...)</span>Modular Wasp with better composition</div>
+    </div>
+    <div class="roadmap-col"><h3>◆ Planned</h3>
+      <div class="roadmap-item"><span class="badge">Make Waspello "right"</span>Planned to work on soon, formalized by priority</div>
+      <div class="roadmap-item"><span class="badge">Wasp TS spec inside migration</span>Work on migration underway</div>
+    </div>
+  </div>
+  <p style="margin-top:20px"><a href="https://github.com/orgs/wasp-lang/projects/5" class="link" style="font-weight:600">Get a glimpse</a></p>
+</section>
+
+<section id="faq" data-section="faq" data-intent="inform" data-layout="accordion" data-items="4">
+  <p class="eyebrow">12</p>
+  <h2>Frequently Asked Questions</h2>
+  <details class="faq-item"><summary>How is Wasp different from Next.js / Nuxt.js / Gatsby?</summary>
+    <p>Those are frontend-focused frameworks; Wasp's specification layer covers the whole stack — auth, jobs, email, deployment — out of the box.</p></details>
+  <details class="faq-item"><summary>How is Wasp different from Ruby on Rails or Django?</summary>
+    <p>Wasp brings the batteries-included philosophy of Rails/Django to the TypeScript/React/Node ecosystem, generating ordinary code you own.</p></details>
+  <details class="faq-item"><summary>How hard is it to learn Wasp?</summary>
+    <p>If you already know React, Node, and Prisma, the *.wasp.ts spec layer is a thin, high-level addition on top.</p></details>
+  <details class="faq-item"><summary>Do you support only React &amp; Node.js currently?</summary>
+    <p>Yes, currently — React on the frontend and Node.js on the backend, with Prisma for data.</p></details>
+  <p style="margin-top:20px;color:var(--gray)">For anything not covered here, join our <a href="https://discord.gg/rzdnErX" class="link">Discord</a>!</p>
+</section>
+
+</main>
+
+<footer data-section="footer" data-intent="navigate" data-layout="mega">
+  <div class="footer-grid">
+    <div class="footer-col"><h3>Docs</h3>
+      <a href="/docs">Getting started</a><a href="/docs/tutorial/create">Todo app tutorial</a><a href="/docs/general/spec">Wasp spec reference</a></div>
+    <div class="footer-col"><h3>Community</h3>
+      <a href="https://discord.gg/rzdnErX">Discord</a><a href="https://x.com/WaspLang">X / Twitter</a><a href="https://bsky.app/profile/wasp.sh">Bluesky</a><a href="https://github.com/wasp-lang/wasp">GitHub</a></div>
+    <div class="footer-col"><h3>Company</h3>
+      <a href="/blog">Blog</a><a href="https://wasp-lang.notion.site/Wasp-Careers-59fd1682c80d446f92be5fa65cc17672">Careers</a><a href="https://wasp-lang.notion.site/Framework-Engineer-at-Wasp-12a18a74854c80de9481c33ebe9cccff?pvs=25#1371801161fd404a8c583cde3611238e">Company</a><a href="/resources">Resources</a></div>
+    <div class="footer-col"><h3>Stay up to date</h3>
+      <form onsubmit="return false" style="display:flex;border:1px solid #444">
+        <input type="email" placeholder="you@example.com" aria-label="Email" style="flex:1;background:transparent;border:none;color:var(--paper);padding:8px 10px;font-size:.82rem">
+        <button type="submit" style="background:var(--yellow);color:var(--ink);border:none;padding:8px 14px;font-family:var(--font-heading);font-weight:600;font-size:.78rem;cursor:pointer">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">© Wasp — <a href="/privacy-policy" class="link">learn more about our cookie policy</a></div>
+</footer>
+
+</div>
+<script>
+(function(){
+  var railItems = Array.prototype.slice.call(document.querySelectorAll('.rail-item'));
+  var sections = railItems.map(function(a){
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+  if (!('IntersectionObserver' in window) || !sections.length) return;
+  var current = null;
+  function setActive(id){
+    if (id === current) return;
+    current = id;
+    railItems.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  }
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+  sections.forEach(function(s){ observer.observe(s); });
+
+  var railNav = document.querySelector('nav[data-section="rail"]');
+  var lastScrollY = window.scrollY;
+  window.addEventListener('scroll', function(){
+    var y = window.scrollY;
+    if (y > lastScrollY && y > 80) { railNav.classList.add('nav-hidden'); }
+    else { railNav.classList.remove('nav-hidden'); }
+    lastScrollY = y;
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
