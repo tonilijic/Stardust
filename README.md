@@ -65,11 +65,13 @@ Aside from running stardust on other pages I'd probably focus more on nitty-grit
 - subtle transitions and transformations, just to give hint of "light and joyful" framework
 - to ensure brand consistency cards thumbnails, when populated with external images could benefit from a simple shader overlay, e.g. [halftone cmyk filter from paper] (https://shaders.paper.design/halftone-cmyk)
 
+/
+/
 
 > I ran out of time and tokens and will stop here
 >
 > Best,
 > Toni
 
-> LLM used: sonnet 5 (default in pro) 200k context window
+* LLM used: sonnet 5 (default in pro) 200k context window
 
