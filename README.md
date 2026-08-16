@@ -55,7 +55,7 @@ I opted for direction 1, primarily because of interesting, document-like layout 
 
 ## What I overrode
 
-All overrides are mentioned in [Override.md](plans/Override.md) file.
+Overrides are mentioned in [Override.md](plans/Override.md) file. (I've probably overridden much more but forgot to call update Overrides.md)
 
 ## Next Step if I'd extend this experiment for another week
 
